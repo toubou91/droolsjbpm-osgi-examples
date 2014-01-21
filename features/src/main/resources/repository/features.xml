@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="camel-drools-example-${project.version}"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <repository>mvn:org.drools/drools-karaf-features/${drools.version}/xml/features</repository>
+
+    <feature name="simple-rule" version="${drools.version}" description="Simple Drools OSGi Example / Rule : Can drink">
+        <feature version="${drools.version}">drools-module</feature>
+        <bundle>mvn:org.drools.example/simple/1.0.0-SNAPSHOT</bundle>
+    </feature>
+
+</features>

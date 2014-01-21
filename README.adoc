@@ -1,3 +1,5 @@
+:source-highlighter: pygments
+
 == Drools & jBPM examples for OSGi deployment
 
 This project contains Drools & jBPM OSGi examples that you can deploy on :
@@ -67,14 +69,13 @@ to be loaded by Drools (Rule, ...).
 This session is created as the start method of the bundle activator class contains code to crteate a KieContainer, KieBaseConfiguration
 
     [source,java]
-    +++
+    ----
     KieServices ks = KieServices.Factory.get();
-            KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
-            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-            KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+    KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+    KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
 
-            this.ksession = kbase.newKieSession();
-    +++
+    this.ksession = kbase.newKieSession();
+    ----
 
 Next, 20 persons will be generated randomly by a function which, added to a KieSession and rule fired
 to verify if they can Drink according to their age.

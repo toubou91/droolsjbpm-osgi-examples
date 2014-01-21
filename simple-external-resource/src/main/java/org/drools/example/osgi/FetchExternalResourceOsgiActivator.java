@@ -1,5 +1,6 @@
 package org.drools.example.osgi;
 
+import org.drools.example.model.Cheese;
 import org.drools.example.rule.EntityHelper;
 import org.kie.api.KieBase;
 import org.kie.api.KieBaseConfiguration;
@@ -17,6 +18,7 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
 
     private static final ReleaseId APP_REL_ID = KieServices.Factory.get()
             .newReleaseId("org.drools.example", "fetch-external-resource", "1.0.0-SNAPSHOT");
+    private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 
     private KieSession ksession;
 
@@ -27,50 +29,44 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
         KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
         KieBase kbase = this.createKieBase(kbaseConfig);
 
-        this.ksession = kbase.newKieSession();
+        ksession = kbase.newKieSession();
         System.out.println("KieSession created.");
 
-        // Add a Person & fires rule
-        this.ksession.insert(EntityHelper.createPerson());
-        int count = ksession.fireAllRules();
+        for (int i = 0; i < 10; i++) {
+            // Create a Cheese
+            Cheese aCheese = EntityHelper.createCheese();
+            ksession.insert(aCheese);
 
-        System.out.println(">> Rule fired - count result : " + count);
+            // Fire the rules
+            ksession.fireAllRules();
+
+            // Check Cheese Price
+            EntityHelper.cheesePrice(aCheese);
+        }
+
+        System.out.println("Cheese added and rules fired.");
 
     }
 
     @Override
     public void stop(BundleContext context) throws Exception {
-        if (this.ksession != null) {
-            this.ksession.dispose();
+        if (ksession != null) {
+            ksession.dispose();
             System.out.println("KieSession disposed.");
         }
     }
 
     private KieBase createKieBase(KieBaseConfiguration kbaseConfig) {
 
-/*      Resource rs = ResourceFactory.newUrlResource("file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls");
-        KieFileSystem kfs = ks.newKieFileSystem().write( rs );
-        KieBuilder kb = ks.newKieBuilder( kfs ).buildAll();*/
-
-        /*final String PACKAGE_NAME = "org.drools.example.cheese"; */
-        final String PACKAGE_NAME = "org.drools.example.external";
-
-        String drl = "package org.drools.example.external\n" +
-                "import org.drools.example.model.Person\n" +
-                "rule R1 when\n" +
-                "   p : Person( age >= 18 )\n" +
-                "then\n" +
-                "   p.setCanDrink( true )\n" +
-                "end\n";
+        final String PACKAGE_NAME = "org.drools.example.cheese";
 
         KieServices ks = KieServices.Factory.get();
-        Resource drlResource = ks.getResources().newByteArrayResource(drl.getBytes());
-        Resource rs = ks.getResources().newUrlResource("file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls");
-        drlResource.setSourcePath("src/main/resources/org/drools/example/fetch/canDrink.drl");
+        Resource rs = ks.getResources().newUrlResource(EXTERNAL_XLS_RESOURCE);
 
         KieFileSystem kfs = ks.newKieFileSystem()
                 .generateAndWritePomXML(APP_REL_ID)
-                .write(drlResource)
+                //.write(drlResource)
+                .write(rs)
                 .writeKModuleXML(createKieProjectWithPackages(ks, PACKAGE_NAME).toXML());
 
         ks.newKieBuilder( kfs ).buildAll();

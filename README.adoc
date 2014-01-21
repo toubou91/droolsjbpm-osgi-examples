@@ -1,4 +1,5 @@
 :source-highlighter: pygments
+:data-uri:
 
 == Drools & jBPM examples for OSGi deployment
 
@@ -104,4 +105,25 @@ to verify if they can Drink according to their age.
 Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of Karaf
 
     KieSession disposed
+
+. Simple XLS Decision Table with a Rule Example
+
+As Drools supports to externalize rules in a XLS Decision Table, this example will demonstrate how such a project can be packaged
+as an OSGi bundle. Compared to the previous example, the rule is not defined in a file where the extension ends with .drl but in a XLS file
+
+image:documentation/images/decision-table.png[]
+
+The XLS Table contains a rule to checks Type of the Cheese. This file is located under `resources/org.drools.example.cheese` and
+the `resources/META-INF/kmodules.xml file contains the definition about the project to be scanned before to create the KieBase, KieSession
+
+  [source,xml]
+  ----
+  <?xml version="1.0" encoding="UTF-8"?>
+  <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+
+      <kbase name="sampleKBase" packages="org.drools.example.cheese" default="true">
+          <ksession name="sampleKSession" default="true" />
+      </kbase>
+  </kmodule>
+  ----
 

@@ -65,7 +65,6 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
 
         KieFileSystem kfs = ks.newKieFileSystem()
                 .generateAndWritePomXML(APP_REL_ID)
-                //.write(drlResource)
                 .write(rs)
                 .writeKModuleXML(createKieProjectWithPackages(ks, PACKAGE_NAME).toXML());
 

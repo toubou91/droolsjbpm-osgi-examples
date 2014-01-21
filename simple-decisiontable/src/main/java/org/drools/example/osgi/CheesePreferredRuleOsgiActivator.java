@@ -34,6 +34,8 @@ public class CheesePreferredRuleOsgiActivator implements BundleActivator {
             // Check Cheese Price
             EntityHelper.cheesePrice(aCheese);
         }
+
+        System.out.println("Cheese added and rules fired.");
     }
 
     public void stop(final BundleContext bc) throws Exception {

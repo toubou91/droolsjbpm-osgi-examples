@@ -1,4 +1,4 @@
-:source-highlighter: pygments
+:source-highlighter: highlights
 :data-uri:
 
 == Drools & jBPM examples for OSGi deployment
@@ -113,7 +113,7 @@ as an OSGi bundle. Compared to the previous example, the rule is not defined in 
 
 image:documentation/images/decision-table.png[]
 
-The XLS Table contains a rule to checks Type of the Cheese. This file is located under `resources/org.drools.example.cheese` and
+The XLS Table contains a rule to checks Type of the Cheese. This file is located under this directory `resources/org.drools.example.cheese` and
 the `resources/META-INF/kmodules.xml file contains the definition about the project to be scanned before to create the KieBase, KieSession
 
   [source,xml]
@@ -126,4 +126,51 @@ the `resources/META-INF/kmodules.xml file contains the definition about the proj
       </kbase>
   </kmodule>
   ----
+
+The code of the OSGI Bundle Activator used when the OSGI Container starts the bundle and calls the events `start`or `stop` are similar to what has been created
+  for the `simple-rule`project
+
+  [source,java]
+  ----
+  public void start(final BundleContext bc) throws Exception {
+
+      KieServices ks = KieServices.Factory.get();
+      KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+      Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+      KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+
+      this.ksession = kbase.newKieSession();
+      System.out.println("KieSession created.");
+
+      for (int i = 0; i < 10; i++) {
+          // Create a Cheese
+          Cheese aCheese = EntityHelper.createCheese();
+          ksession.insert(aCheese);
+
+          // Fire the rules
+          ksession.fireAllRules();
+
+          // Check Cheese Price
+          EntityHelper.cheesePrice(aCheese);
+      }
+
+      System.out.println("Cheese added and rules fired.");
+  }
+  ----
+
+To deploy this module on the container, use this Karaf command which will install `decision-table` module and the example.
+When the bundle will be started, this information will appear in the Karaf Console
+
+    karaf@root> features:install simple-decisiontable-rule
+    KieSession created.
+    Cheese Stilton costs 10 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Stilton costs 10 EUR.
 

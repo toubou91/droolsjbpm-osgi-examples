@@ -1,4 +1,11 @@
-# Download and Install on Apache Karaf
+== Drools & jBPM examples for OSGi deployment
+
+This project contains Drools & jBPM OSGi examples that you can deploy on :
+- http://karaf.apache.org[Apache Karaf]
+- http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
+- http://www.jboss.org/products/fuse[RedHat JBoss Fuse]
+
+== Download and Install on Apache Karaf
 
 - Open a browser at the following address : http://karaf.apache.org/index/community/download.html#Karaf2.3.3
 - Download `karaf`
@@ -11,13 +18,13 @@
   cd bin
   ./karaf
 
-# Add Repositories of the modules
+== Add Repositories of the modules
 
-## Add location of the url pointing to the files of the Drools OSGI examples
+. Add location of the url pointing to the files of the Drools OSGI examples
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
 
-## Simple Rule - Drools OSGi Example
+. Simple Rule - Drools OSGi Example
 
 To test the first simple example which is a Drools example using a simple rule DRL where we will check
 if a person can drink, deploy the module `simple-rule`
@@ -26,7 +33,6 @@ if a person can drink, deploy the module `simple-rule`
 
 After a few moment, you will see 20 results generated
 
-    ````
     karaf@root> features:install simple-rule
     KieSession created.
     Person Old Person, can go to the Bar
@@ -49,5 +55,5 @@ After a few moment, you will see 20 results generated
     Person Old Person, can go to the Bar
     Person Old Person, can go to the Bar
     Person Old Person, can go to the Bar
-    ````
+    ```
 

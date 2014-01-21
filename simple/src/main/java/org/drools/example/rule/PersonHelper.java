@@ -22,9 +22,9 @@ public class PersonHelper {
 
     public static void canDrink(Person aPerson) {
         if (aPerson.isCanDrink()) {
-            System.out.println("Person " + aPerson.getName() + ", can go to the Bar");
+            System.out.println("Person " + aPerson.getName() + " aged of " + aPerson.getAge() + " , can go to the Bar");
         } else {
-            System.out.println("Person " + aPerson.getName() + ", can't go to the Bar");
+            System.out.println("Person " + aPerson.getName() + " aged of " + aPerson.getAge() + ", can't go to the Bar");
         }
     }
 }

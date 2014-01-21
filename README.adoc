@@ -5,6 +5,21 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 - http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
 - http://www.jboss.org/products/fuse[RedHat JBoss Fuse]
 
+== Download and compile the project
+
+- In a Dos/Unix terminal, clone this git project
+
+  git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
+
+- Move to that directory
+
+  cd droolsjbpm-osgi-examples
+
+- Compile it using `maven`
+
+  mvn clean install
+
+
 == Download and Install on Apache Karaf
 
 - Open a browser at the following address : http://karaf.apache.org/index/community/download.html#Karaf2.3.3
@@ -20,40 +35,59 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 
 == Add Repositories of the modules
 
-. Add location of the url pointing to the files of the Drools OSGI examples
+  Add location of the url pointing to the file containing the description of the Drools OSGI modules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
 
-. Simple Rule - Drools OSGi Example
+== Drools OSGi Example
 
-To test the first simple example which is a Drools example using a simple rule DRL where we will check
-if a person can drink, deploy the module `simple-rule`
+. Simple Rule Example
+
+To test the simple rule example which is a Drools example using a simple rule DRL
+
+    rule "CanDrink"
+    when
+        p : Person( age >= 21 )
+    then
+    	p.setCanDrink(true);
+    end
+
+where we will check if a person can drink, we will deploy the module `simple-rule`. This module
+which is a feature will install the code of the bundle `simple-rule`but also `drools core & compiler`
+like `kie` project (api &
 
   features:install simple-rule
 
-After a few moment, you will see 20 results generated
+After a few moment, you will see that the Bundle has been installed and started as the Activator class will report the following message
 
-    karaf@root> features:install simple-rule
-    KieSession created.
-    Person Old Person, can go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Old Person, can go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Young Person, can't go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    Person Old Person, can go to the Bar
-    ```
+        KieSession created.
+
+corresponding to the KieSession created by Kie & Drools after discovering the META-INF/kmodules.xml file containing the location of the resources
+to be loaded by Drools (Rule, ...). Next, 20 persons will be generated randomly by a function which, added to a KieSession and rule fired
+to verify if they can Drink according to their age.
+
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Old Person aged of 21 , can go to the Bar
+    Person Young Person aged of 18, can't go to the Bar
+
+Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of Karaf
+
+    KieSession disposed
 

@@ -17,4 +17,11 @@
         <bundle>mvn:org.drools.example/simple-decisiontable/1.0.0-SNAPSHOT</bundle>
     </feature>
 
+
+    <feature name="fetch-external-resource" version="${drools.version}" description="Drools OSGi Example fetching resources externally">
+        <feature version="${drools.version}">drools-module</feature>
+<!--        <feature version="${drools.version}">drools-decisiontable</feature>-->
+        <bundle>mvn:org.drools.example/fetch-external-resource/1.0.0-SNAPSHOT</bundle>
+    </feature>
+
 </features>

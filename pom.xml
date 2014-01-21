@@ -91,6 +91,7 @@
         <module>simple</module>
         <module>features</module>
         <module>simple-decisiontable</module>
+        <module>simple-external-resource</module>
     </modules>
 
 </project>

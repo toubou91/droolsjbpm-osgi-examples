@@ -53,17 +53,30 @@ To test the simple rule example which is a Drools example using a simple rule DR
     end
 
 where we will check if a person can drink, we will deploy the module `simple-rule`. This module
-which is a feature will install the code of the bundle `simple-rule`but also `drools core & compiler`
-like `kie` project (api &
+which is a feature will install the code of the bundle `simple-rule` but also `drools core & compiler`
+like `kie` project (api & internal)
 
   features:install simple-rule
 
 After a few moment, you will see that the Bundle has been installed and started as the Activator class will report the following message
 
-        KieSession created.
+    KieSession created.
 
 corresponding to the KieSession created by Kie & Drools after discovering the META-INF/kmodules.xml file containing the location of the resources
-to be loaded by Drools (Rule, ...). Next, 20 persons will be generated randomly by a function which, added to a KieSession and rule fired
+to be loaded by Drools (Rule, ...).
+This session is created as the start method of the bundle activator class contains code to crteate a KieContainer, KieBaseConfiguration
+
+    [source,java]
+    +++
+    KieServices ks = KieServices.Factory.get();
+            KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+            KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+
+            this.ksession = kbase.newKieSession();
+    +++
+
+Next, 20 persons will be generated randomly by a function which, added to a KieSession and rule fired
 to verify if they can Drink according to their age.
 
     Person Young Person aged of 18, can't go to the Bar

@@ -18,15 +18,8 @@ public class CanDrinkRuleOsgiActivator implements BundleActivator {
 
     public void start(final BundleContext bc) throws Exception {
 
-        Bundle b = bc.getBundle();
-        ClassLoader cl = b.adapt(BundleWiring.class).getClassLoader();
-
         KieServices ks = KieServices.Factory.get();
-/*        KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
-        Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-        KieContainer kcont = ks.newKieClasspathContainer(this.getClass().getClassLoader());*/
-
-        KieContainer kcont = ks.newKieClasspathContainer(cl);
+        KieContainer kcont = ks.newKieClasspathContainer(getClass().getClassLoader());
         KieBase kbase = kcont.getKieBase("sampleKBase");
 
         this.ksession = kbase.newKieSession();

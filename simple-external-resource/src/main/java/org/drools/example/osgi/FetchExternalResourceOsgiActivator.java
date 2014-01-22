@@ -27,10 +27,9 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
     public void start(BundleContext context) throws Exception {
 
         KieServices ks = KieServices.Factory.get();
-        //KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
-        ks.newKieClasspathContainer(this.getClass().getClassLoader());
+        ks.newKieClasspathContainer(getClass().getClassLoader());
         Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-        KieBase kbase = this.createKieBase();
+        KieBase kbase = createKieBase();
 
         ksession = kbase.newKieSession();
         System.out.println("KieSession created.");

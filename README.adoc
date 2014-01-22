@@ -44,7 +44,7 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 
 == Drools OSGi Example
 
-. Simple Rule Example
+=== Simple Rule Example
 
 To test the simple rule example which is a Drools example using a simple rule DRL
 
@@ -106,7 +106,7 @@ Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and 
 
     KieSession disposed
 
-. Simple XLS Decision Table with a Rule Example
+=== Simple XLS Decision Table with a Rule Example
 
 As Drools supports to externalize rules in a XLS Decision Table, this example will demonstrate how such a project can be packaged
 as an OSGi bundle. Compared to the previous example, the rule is not defined in a file where the extension ends with .drl but in a XLS file
@@ -174,6 +174,44 @@ When the bundle will be started, this information will appear in the Karaf Conso
     Cheese Cheddar costs 50 EUR.
     Cheese Stilton costs 10 EUR.
 
-. External XLS Decision Table
+=== External XLS Decision Table
 
-Designing Rules is
+As Rules will be designed by business analysts in a company, they will prefer to use a XLS Spreadsheet document that they will provide
+ to the project (developer, ...) as artefact to be used by the application to calculate decision. In the previous example, the decision table
+ was embedded, packaged into the jar file generated during the build of the application. while this approach is fine, it implies that the project must
+ rebuild (regenerate a jar/zip file) every time we have a new update the decision tables.
+ This example allows you to externalize the location of the decision table. The only to be done is to change this variable in the code
+
+
+    package org.drools.example.osgi;
+    ...
+
+    public class FetchExternalResourceOsgiActivator implements BundleActivator {
+
+        private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
+
+
+ , to point to your XLS file location, before to build the project and deploy on it Karaf, JBoss Fuse.
+
+ Project can be deployed using the following Karaf command :
+
+    features:install fetch-external-resource
+
+    features:install fetch-external-resource
+    KieSession created.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Stilton costs 10 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese Cheddar costs 50 EUR.
+    Cheese added and rules fired.
+
+ For later update of the XLS file, the bundle used for this example must be restarted to create new Session and load new Rules definition
+
+    osgi:restart ID_OF_THE_BUNDLE
+

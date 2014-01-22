@@ -178,9 +178,9 @@ When the bundle will be started, this information will appear in the Karaf Conso
 
 As Rules will be designed by business analysts in a company, they will prefer to use a XLS Spreadsheet document that they will provide
  to the project (developer, ...) as artefact to be used by the application to calculate decision. In the previous example, the decision table
- was embedded, packaged into the jar file generated during the build of the application. while this approach is fine, it implies that the project must
- rebuild (regenerate a jar/zip file) every time we have a new update the decision tables.
- This example allows you to externalize the location of the decision table. The only to be done is to change this variable in the code
+ was embedded, packaged into the jar file generated during the build of the application. While this approach is fine, it implies that the project must
+ rebuild (regenerate a jar/zip file) every time we have a new update the decision table.
+ This example allows you to externalize the location of the decision table. The only thing to be done is to change this variable in the code
 
 
     package org.drools.example.osgi;

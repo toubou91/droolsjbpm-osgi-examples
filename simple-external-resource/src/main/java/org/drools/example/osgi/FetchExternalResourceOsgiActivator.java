@@ -27,6 +27,7 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
 
         KieServices ks = KieServices.Factory.get();
         KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+        Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
         KieBase kbase = this.createKieBase(kbaseConfig);
 
         ksession = kbase.newKieSession();

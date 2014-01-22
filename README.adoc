@@ -188,11 +188,9 @@ As Rules will be designed by business analysts in a company, they will prefer to
         private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 
 
- , to point to your XLS file location, before to build the project and deploy on it Karaf, JBoss Fuse.
+, to point to your XLS file location, before to build the project and deploy on it Karaf, JBoss Fuse.
 
- Project can be deployed using the following Karaf command :
-
-    features:install fetch-external-resource
+Project can be deployed using the following Karaf command :
 
     features:install fetch-external-resource
     KieSession created.
@@ -208,7 +206,7 @@ As Rules will be designed by business analysts in a company, they will prefer to
     Cheese Cheddar costs 50 EUR.
     Cheese added and rules fired.
 
- For later update of the XLS file, the bundle used for this example must be restarted to create new Session and load new Rules definition
+For later update of the XLS file, the bundle used for this example must be restarted to create new Session and load new Rules definition
 
     osgi:restart ID_OF_THE_BUNDLE
 

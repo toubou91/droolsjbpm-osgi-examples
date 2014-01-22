@@ -193,7 +193,9 @@ to point to your XLS file on the file system, before to build the project and de
 Project can be deployed using the following Karaf command :
 
     features:install fetch-external-resource
-    KieSession created.
+
+And after rules calculation, the following result will be displayed
+
     Cheese Cheddar costs 50 EUR.
     Cheese Cheddar costs 50 EUR.
     Cheese Stilton costs 10 EUR.

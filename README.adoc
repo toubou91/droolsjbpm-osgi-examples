@@ -226,25 +226,25 @@ image:documentation/images/evaluation-process.png[]
 
 To configure the runtime manage with the bpmn process file, you should add assets using a `ResourceFactory.newClassPathResource` with the package name containing it
 
-            RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getEmpty()
-                    .addAsset(ResourceFactory.newClassPathResource(process,getClass().getClassLoader()), ResourceType.BPMN2)
-                    .get();
-            return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(environment);
+    RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getEmpty()
+            .addAsset(ResourceFactory.newClassPathResource(process,getClass().getClassLoader()), ResourceType.BPMN2)
+            .get();
+    return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(environment);
 
 The parameters used by the business process like also the tasks are configured like that
 
-            runtimeEngine = runtimeManager.getRuntimeEngine(EmptyContext.get());
-            ksession = runtimeEngine.getKieSession();
+    runtimeEngine = runtimeManager.getRuntimeEngine(EmptyContext.get());
+    ksession = runtimeEngine.getKieSession();
 
-            LOG.info("Register tasks");
-            ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
-            ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
+    LOG.info("Register tasks");
+    ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
+    ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
 
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("employee", "UserId-12345");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("employee", "UserId-12345");
 
-            LOG.info("Start process Evaluation (bpmn2)");
-            ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
-            LOG.info("Stated completed");
+    LOG.info("Start process Evaluation (bpmn2)");
+    ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
+    LOG.info("Stated completed");
 
 Enjoy it !

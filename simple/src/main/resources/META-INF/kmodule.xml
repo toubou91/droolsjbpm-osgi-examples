@@ -4,4 +4,5 @@
     <kbase name="sampleKBase" packages="org.drools.example.drink" default="true">
         <ksession name="sampleKSession" default="true" />
     </kbase>
+
 </kmodule>

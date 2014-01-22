@@ -5,9 +5,12 @@ import org.drools.example.rule.PersonHelper;
 import org.kie.api.KieBase;
 import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.wiring.BundleWiring;
 
 public class CanDrinkRuleOsgiActivator implements BundleActivator {
 
@@ -15,10 +18,16 @@ public class CanDrinkRuleOsgiActivator implements BundleActivator {
 
     public void start(final BundleContext bc) throws Exception {
 
+        Bundle b = bc.getBundle();
+        ClassLoader cl = b.adapt(BundleWiring.class).getClassLoader();
+
         KieServices ks = KieServices.Factory.get();
-        KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+/*        KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
         Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-        KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+        KieContainer kcont = ks.newKieClasspathContainer(this.getClass().getClassLoader());*/
+
+        KieContainer kcont = ks.newKieClasspathContainer(cl);
+        KieBase kbase = kcont.getKieBase("sampleKBase");
 
         this.ksession = kbase.newKieSession();
         System.out.println("KieSession created.");

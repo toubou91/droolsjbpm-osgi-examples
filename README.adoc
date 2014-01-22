@@ -174,3 +174,6 @@ When the bundle will be started, this information will appear in the Karaf Conso
     Cheese Cheddar costs 50 EUR.
     Cheese Stilton costs 10 EUR.
 
+. External XLS Decision Table
+
+Designing Rules is

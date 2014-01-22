@@ -10,6 +10,7 @@ import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.io.Resource;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -26,9 +27,10 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
     public void start(BundleContext context) throws Exception {
 
         KieServices ks = KieServices.Factory.get();
-        KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+        //KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+        ks.newKieClasspathContainer(this.getClass().getClassLoader());
         Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-        KieBase kbase = this.createKieBase(kbaseConfig);
+        KieBase kbase = this.createKieBase();
 
         ksession = kbase.newKieSession();
         System.out.println("KieSession created.");
@@ -57,7 +59,7 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
         }
     }
 
-    private KieBase createKieBase(KieBaseConfiguration kbaseConfig) {
+    private KieBase createKieBase() {
 
         final String PACKAGE_NAME = "org.drools.example.cheese";
 

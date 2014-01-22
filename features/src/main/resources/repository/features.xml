@@ -6,22 +6,28 @@
 
     <repository>mvn:org.drools/drools-karaf-features/${drools.version}/xml/features</repository>
 
-    <feature name="simple-rule" version="${drools.version}" description="Simple Drools OSGi Example / Rule : Can drink">
+    <!-- Drools OSGi Examples -->
+    <feature name="simple-rule" version="${drools.version}" description="Simple Drools OSGi Example :: Rule = Can drink">
         <feature version="${drools.version}">drools-module</feature>
-        <bundle>mvn:org.drools.example/simple/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:org.drools.example/simple/${project.version}</bundle>
     </feature>
 
-    <feature name="simple-decisiontable-rule" version="${drools.version}" description="Simple Drools OSGi Example using XLS DecisionTable as Rule definition : Can drink &amp; Cheese">
+    <feature name="simple-decisiontable-rule" version="${drools.version}" description="Simple Drools OSGi Example using XLS DecisionTable :: Rule = Can drink &amp; Cheese">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
-        <bundle>mvn:org.drools.example/simple-decisiontable/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:org.drools.example/simple-decisiontable/${project.version}</bundle>
     </feature>
-
 
     <feature name="fetch-external-resource" version="${drools.version}" description="Drools OSGi Example fetching resources externally">
         <feature version="${drools.version}">drools-module</feature>
-<!--        <feature version="${drools.version}">drools-decisiontable</feature>-->
-        <bundle>mvn:org.drools.example/fetch-external-resource/1.0.0-SNAPSHOT</bundle>
+        <feature version="${drools.version}">drools-decisiontable</feature>
+        <bundle>mvn:org.drools.example/fetch-external-resource/${project.version}</bundle>
+    </feature>
+
+    <!-- jBPMN OSGi Examples -->
+    <feature name="simple-process" version="${drools.version}" description="jBPM OSGi Example :: Simple Process">
+        <feature version="${drools.version}">jbpm</feature>
+        <bundle>mvn:org.jbpm.example/simple-process/${project.version}</bundle>
     </feature>
 
 </features>

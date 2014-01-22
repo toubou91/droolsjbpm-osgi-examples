@@ -23,11 +23,14 @@
                 <scope>provided</scope>
             </dependency>
 
+            <!-- KIE -->
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-api</artifactId>
                 <version>${drools.version}</version>
             </dependency>
+
+            <!-- Drools -->
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-core</artifactId>
@@ -48,6 +51,23 @@
                 <artifactId>drools-osgi-integration</artifactId>
                 <version>${drools.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- jBPMN -->
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-bpmn2</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-flow</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-runtime-manager</artifactId>
+                <version>${drools.version}</version>
             </dependency>
 
             <dependency>
@@ -92,6 +112,9 @@
         <module>features</module>
         <module>simple-decisiontable</module>
         <module>simple-external-resource</module>
+<!--        <module>camel-kie-spring</module>
+        <module>camel-kie-blueprint</module>-->
+        <module>simple-jbpm</module>
     </modules>
 
 </project>

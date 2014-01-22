@@ -213,3 +213,38 @@ For later update of the XLS file, the bundle used for this example must be resta
 
     osgi:restart ID_OF_THE_BUNDLE
 
+=== Simple jBPM Process
+
+jbpmn process is also supported and can be deployed too on Karaf, JBoss Fuse container. Like the Drools Simple Rule Example, you should install a feature
+which will install the bundles required (jbpm, Human-task, ...) and finally the example
+
+    features:install simple-process
+
+The process is simple and start by logging information that process has been initiated before to diverge, register a request and finally converge at the end
+
+image:documentation/images/evaluation-process.png[]
+
+To configure the runtime manage with the bpmn process file, you should add assets using a `ResourceFactory.newClassPathResource` with the package name containing it
+
+            RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getEmpty()
+                    .addAsset(ResourceFactory.newClassPathResource(process,getClass().getClassLoader()), ResourceType.BPMN2)
+                    .get();
+            return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(environment);
+
+The parameters used by the business process like also the tasks are configured like that
+
+            runtimeEngine = runtimeManager.getRuntimeEngine(EmptyContext.get());
+            ksession = runtimeEngine.getKieSession();
+
+            LOG.info("Register tasks");
+            ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
+            ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
+
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("employee", "UserId-12345");
+
+            LOG.info("Start process Evaluation (bpmn2)");
+            ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
+            LOG.info("Stated completed");
+
+Enjoy it !

@@ -1,5 +1,6 @@
 :source-highlighter: highlights
 :data-uri:
+:toc:
 
 == Drools & jBPM examples for OSGi deployment
 

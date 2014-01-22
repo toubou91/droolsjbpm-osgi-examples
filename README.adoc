@@ -184,10 +184,7 @@ As Rules will be designed by business analysts in a company, they will prefer to
 
 
     package org.drools.example.osgi;
-    ...
-
     public class FetchExternalResourceOsgiActivator implements BundleActivator {
-
         private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 
 

@@ -24,6 +24,12 @@
         <bundle>mvn:org.drools.example/fetch-external-resource/${project.version}</bundle>
     </feature>
 
+    <feature name="incremental-fetch-external-resource" version="${drools.version}" description="Drools OSGi Example fetching resources externally and doing incremental build">
+        <feature version="${drools.version}">drools-module</feature>
+        <feature version="${drools.version}">drools-decisiontable</feature>
+        <bundle>mvn:org.drools.example/increment-fetch-external-resource/${project.version}</bundle>
+    </feature>
+
     <!-- jBPMN OSGi Examples -->
     <feature name="simple-process" version="${drools.version}" description="jBPM OSGi Example :: Simple Process">
         <feature version="${drools.version}">jbpm</feature>

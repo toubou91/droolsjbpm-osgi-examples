@@ -10,8 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.drools.example</groupId>
-    <artifactId>fetch-external-resource</artifactId>
-    <name>Drools OSGi Example :: Fetch External Resource</name>
+    <artifactId>increment-fetch-external-resource</artifactId>
+    <name>Drools OSGi Example :: Fetch External Resource &amp; Increment build</name>
     <packaging>bundle</packaging>
 
     <dependencies>

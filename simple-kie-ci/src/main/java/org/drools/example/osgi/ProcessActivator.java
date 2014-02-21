@@ -25,15 +25,19 @@ public class ProcessActivator implements BundleActivator {
 
         System.out.println("This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo");
 
-        for (int i = 0; i < 100; i++) {
+        try {
+            for (int i = 0; i < 100; i++) {
 
-            kScanner.scanNow();
+                kScanner.scanNow();
 
-            ksession = kContainer.newKieSession();
-            ksession.insert("Hello");
-            ksession.fireAllRules();
+                ksession = kContainer.newKieSession();
+                ksession.insert("Hello");
+                ksession.fireAllRules();
 
-            Thread.sleep(10000);
+                Thread.sleep(10000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Ctrl-c command executed. Process interrupted");
         }
     }
 

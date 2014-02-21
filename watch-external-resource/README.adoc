@@ -1,0 +1,27 @@
+
+
+
+[  82] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-impl/1.9
+[  83] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-api/1.9
+[  84] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-util/1.9
+[  85] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-spi/1.9
+[  86] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-connector-file/1.9
+[  87] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.aether/aether-connector-wagon/1.9
+[  88] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.plexus/plexus-cipher/1.7
+[  89] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-settings/3.1.1
+[  90] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-settings-builder/3.1.1
+[  91] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-core/3.1.1
+[  92] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-model/3.1.1
+[  93] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-model-builder/3.1.1
+[  94] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-compat/3.1.1
+[  95] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven.wagon/wagon-provider-api/2.6
+[  96] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven.wagon/wagon-http/2.6
+[  97] [Active     ] [            ] [   80] wrap:mvn:org.apache.maven/maven-aether-provider/3.0.5
+[  98] [Active     ] [            ] [   80] mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/1.9.2_1
+[  99] [Active     ] [            ] [   80] wrap:mvn:org.codehaus.plexus/plexus-classworlds/2.5.1
+[ 100] [Active     ] [            ] [   80] wrap:mvn:org.codehaus.plexus/plexus-interpolation/1.19
+[ 101] [Active     ] [            ] [   80] wrap:mvn:org.codehaus.plexus/plexus-container-default/1.5.5
+[ 102] [Active     ] [            ] [   80] wrap:mvn:org.codehaus.plexus/plexus-utils/3.0.15
+[ 103] [Active     ] [            ] [   80] wrap:mvn:org.sonatype.sisu/sisu-inject-plexus/2.5.2
+[ 104] [Active     ] [            ] [   80] mvn:org.kie/kie-ci/6.1.0-SNAPSHOT
+

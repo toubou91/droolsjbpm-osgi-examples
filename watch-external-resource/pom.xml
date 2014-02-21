@@ -10,15 +10,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.drools.example</groupId>
-    <artifactId>increment-fetch-external-resource</artifactId>
-    <name>Drools OSGi Example :: Fetch External Resource &amp; Increment build</name>
+    <artifactId>watch-external-resource</artifactId>
+    <name>Drools OSGi Example :: Watch for External Resource &amp; Increment build</name>
     <packaging>bundle</packaging>
 
     <dependencies>
+        <!-- KIE -->
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-api</artifactId>
         </dependency>
+<!--       <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-ci</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-ci-shaded-osgi</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+
+        <!-- Drools -->
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
@@ -31,6 +43,8 @@
             <groupId>org.drools</groupId>
             <artifactId>drools-decisiontables</artifactId>
         </dependency>
+
+        <!-- OSGI -->
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
@@ -59,7 +73,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.name}</Bundle-Name>
-                        <Bundle-Activator>org.drools.example.osgi.IncrementAndFetchExternalResourceOsgiActivator</Bundle-Activator>
+                        <Bundle-Activator>org.drools.example.osgi.ScanOsgiActivator</Bundle-Activator>
                         <Import-Package>
                             org.slf4j,
                             org.drools.core;version="[6.0,7)",
@@ -74,7 +88,9 @@
                             org.drools.core.reteoo;version="[6.0,7)",
                             org.drools.core.rule.builder.dialect.asm;version="[6.0,7)",
                             org.drools.core.spi;version="[6.0,7)",
+                            org.drools.core.util;version="[6.0,7)",
                             org.drools.compiler.compiler;version="[6.0,7)",
+                            org.drools.compiler.kie.builder.impl;version="[6.0,7)",
                             org.drools.compiler.rule.builder.dialect.mvel;version="[6.0,7)",
                             org.kie.api;version="[6.0,7)",
                             org.kie.api.definition.rule;version="[6.0,7)",
@@ -88,6 +104,7 @@
                             org.kie.internal.runtime.manager;version="[6.0,7)",
                             org.kie.internal.runtime.manager.context;version="[6.0,7)",
                             org.kie.internal;version="[6.0,7)",
+                            org.kie.scanner;version="[6.0,7)",
                             org.eclipse.jdt.internal.compiler,
                             org.osgi.framework.wiring,
                             org.osgi.framework

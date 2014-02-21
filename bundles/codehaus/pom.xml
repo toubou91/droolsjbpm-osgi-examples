@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.apache.servicemix</groupId>
+        <artifactId>bundles</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.apache.servicemix.bundles</groupId>
+    <artifactId>org.apache.servicemix.bundles.codehaus</artifactId>
+    <version>1.0</version>
+    <packaging>bundle</packaging>
+    <name>Apache ServiceMix :: Bundles :: Codehaus</name>
+    <description>This OSGi bundle wraps Codehaus jar file.</description>
+
+    <properties>
+        <plexus-classworlds-version>2.4</plexus-classworlds-version>
+        <plexus-component-annotations-version>1.5.5</plexus-component-annotations-version>
+        <plexus-container-default-version>1.5.5</plexus-container-default-version>
+        <plexus-utils-version>3.0.7</plexus-utils-version>
+        <plexus-interpolation-version>1.14</plexus-interpolation-version>
+        <pkgGroupId>org.codehaus.plexus</pkgGroupId>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-classworlds</artifactId>
+            <version>${plexus-classworlds-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-component-annotations</artifactId>
+            <version>${plexus-component-annotations-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-container-default</artifactId>
+            <version>${plexus-container-default-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>${plexus-utils-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-interpolation</artifactId>
+            <version>${plexus-interpolation-version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>${pkgGroupId}:plexus-classworlds</include>
+                                    <include>${pkgGroupId}:plexus-component-annotations</include>
+                                    <include>${pkgGroupId}:plexus-container-default</include>
+                                    <include>${pkgGroupId}:plexus-utils</include>
+                                    <include>${pkgGroupId}:plexus-interpolation</include>
+                                </includes>
+                            </artifactSet>
+                            <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Export-Package>
+                            org.codehaus.classworlds*;version=${plexus-classworlds-version},
+                            org.codehaus.plexus.component*;version=${plexus-container-default-version},
+                            org.codehaus.plexus.configuration*;version=${plexus-container-default-version},
+                            org.codehaus.plexus.classworlds*;version=${plexus-classworlds-version},
+                            org.codehaus.plexus.component.annotations;version=${plexus-component-annotations-version},
+                            org.codehaus.plexus.interpolation*;version=${plexus-interpolation-version},
+                            org.codehaus.plexus.util*;version=${plexus-utils-version}
+                        </Export-Package>
+                        <Import-Package>
+                            *
+                        </Import-Package>
+                        <Private-Package/>
+                        <_removeheaders>Private-Package</_removeheaders>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

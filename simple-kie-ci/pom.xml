@@ -18,7 +18,7 @@
   <dependencies>
     <dependency>
       <groupId>org.kie</groupId>
-      <artifactId>kie-ci-shaded-osgi</artifactId>
+      <artifactId>kie-ci</artifactId>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>

@@ -4,6 +4,8 @@
 
 == Drools & jBPM examples for OSGi deployment
 
+toc::[]
+
 This project contains Drools & jBPM OSGi examples that you can deploy on :
 - http://karaf.apache.org[Apache Karaf]
 - http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
@@ -39,7 +41,7 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 
 == Add Repositories of the modules
 
-  Add location of the url pointing to the file containing the description of the Drools OSGI modules
+Add location of the url pointing to the file containing the description of the Drools OSGI modules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
 
@@ -49,12 +51,15 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 
 To test the simple rule example which is a Drools example using a simple rule DRL
 
-    rule "CanDrink"
-    when
-        p : Person( age >= 21 )
-    then
-    	p.setCanDrink(true);
-    end
+[source,java]
+----
+rule "CanDrink"
+when
+    p : Person( age >= 21 )
+then
+	p.setCanDrink(true);
+end
+----    
 
 where we will check if a person can drink, we will deploy the module `simple-rule`. This module
 which is a feature will install the code of the bundle `simple-rule` but also `drools core & compiler`
@@ -70,14 +75,14 @@ corresponding to the KieSession created by Kie & Drools after discovering the ME
 to be loaded by Drools (Rule, ...).
 This session is created as the start method of the bundle activator class contains code to crteate a KieContainer, KieBaseConfiguration
 
-    [source,java]
-    ----
-    KieServices ks = KieServices.Factory.get();
-    KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
-    KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+[source,java]
+----
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
 
-    this.ksession = kbase.newKieSession();
-    ----
+this.ksession = kbase.newKieSession();
+----
 
 Next, 20 persons will be generated randomly by a function which, added to a KieSession and rule fired
 to verify if they can Drink according to their age.
@@ -117,47 +122,47 @@ image:documentation/images/decision-table.png[]
 The XLS Table contains a rule to checks Type of the Cheese. This file is located under this directory `resources/org.drools.example.cheese` and
 the `resources/META-INF/kmodules.xml file contains the definition about the project to be scanned before to create the KieBase, KieSession
 
-  [source,xml]
-  ----
-  <?xml version="1.0" encoding="UTF-8"?>
-  <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
 
-      <kbase name="sampleKBase" packages="org.drools.example.cheese" default="true">
-          <ksession name="sampleKSession" default="true" />
-      </kbase>
-  </kmodule>
-  ----
+    <kbase name="sampleKBase" packages="org.drools.example.cheese" default="true">
+        <ksession name="sampleKSession" default="true" />
+    </kbase>
+</kmodule>
+----
 
 The code of the OSGI Bundle Activator used when the OSGI Container starts the bundle and calls the events `start`or `stop` are similar to what has been created
   for the `simple-rule`project
 
-  [source,java]
-  ----
-  public void start(final BundleContext bc) throws Exception {
+[source,java]
+----
+public void start(final BundleContext bc) throws Exception {
 
-      KieServices ks = KieServices.Factory.get();
-      KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
-      Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
-      KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
+    KieServices ks = KieServices.Factory.get();
+    KieBaseConfiguration kbaseConfig = ks.newKieBaseConfiguration(null, this.getClass().getClassLoader());
+    Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+    KieBase kbase = ks.newKieClasspathContainer().newKieBase(kbaseConfig);
 
-      this.ksession = kbase.newKieSession();
-      System.out.println("KieSession created.");
+    this.ksession = kbase.newKieSession();
+    System.out.println("KieSession created.");
 
-      for (int i = 0; i < 10; i++) {
-          // Create a Cheese
-          Cheese aCheese = EntityHelper.createCheese();
-          ksession.insert(aCheese);
+    for (int i = 0; i < 10; i++) {
+        // Create a Cheese
+        Cheese aCheese = EntityHelper.createCheese();
+        ksession.insert(aCheese);
 
-          // Fire the rules
-          ksession.fireAllRules();
+        // Fire the rules
+        ksession.fireAllRules();
 
-          // Check Cheese Price
-          EntityHelper.cheesePrice(aCheese);
-      }
+        // Check Cheese Price
+        EntityHelper.cheesePrice(aCheese);
+    }
 
-      System.out.println("Cheese added and rules fired.");
-  }
-  ----
+    System.out.println("Cheese added and rules fired.");
+}
+----
 
 To deploy this module on the container, use this Karaf command which will install `decision-table` module and the example.
 When the bundle will be started, this information will appear in the Karaf Console
@@ -183,11 +188,12 @@ As Rules will be designed by business analysts in a company, they will prefer to
  rebuild (regenerate a jar/zip file) every time we have a new update the decision table.
  This example allows you to externalize the location of the decision table. The only thing to be done is to change this variable in the code
 
-
-    package org.drools.example.osgi;
-    public class FetchExternalResourceOsgiActivator implements BundleActivator {
-        private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
-
+[source,java]
+----
+package org.drools.example.osgi;
+public class FetchExternalResourceOsgiActivator implements BundleActivator {
+    private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
+----
 
 to point to your XLS file on the file system, before to build the project and deploy on it Karaf, JBoss Fuse.
 
@@ -226,25 +232,28 @@ image:documentation/images/evaluation-process.png[]
 
 To configure the runtime manage with the bpmn process file, you should add assets using a `ResourceFactory.newClassPathResource` with the package name containing it
 
-    RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getEmpty()
-            .addAsset(ResourceFactory.newClassPathResource(process,getClass().getClassLoader()), ResourceType.BPMN2)
-            .get();
-    return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(environment);
+[source,java]
+----
+RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getEmpty()
+        .addAsset(ResourceFactory.newClassPathResource(process,getClass().getClassLoader()), ResourceType.BPMN2)
+        .get();
+return RuntimeManagerFactory.Factory.get().newSingletonRuntimeManager(environment);
 
 The parameters used by the business process like also the tasks are configured like that
 
-    runtimeEngine = runtimeManager.getRuntimeEngine(EmptyContext.get());
-    ksession = runtimeEngine.getKieSession();
+runtimeEngine = runtimeManager.getRuntimeEngine(EmptyContext.get());
+ksession = runtimeEngine.getKieSession();
 
-    LOG.info("Register tasks");
-    ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
-    ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
+LOG.info("Register tasks");
+ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
+ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
 
-    Map<String, Object> params = new HashMap<String, Object>();
-    params.put("employee", "UserId-12345");
+Map<String, Object> params = new HashMap<String, Object>();
+params.put("employee", "UserId-12345");
 
-    LOG.info("Start process Evaluation (bpmn2)");
-    ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
-    LOG.info("Stated completed");
+LOG.info("Start process Evaluation (bpmn2)");
+ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
+LOG.info("Stated completed");
+----
 
 Enjoy it !

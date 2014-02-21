@@ -123,6 +123,7 @@
                             org.codehaus.plexus.util.xml,
                             org.codehaus.plexus.util.xml.pull,
                             org.sonatype.aether.artifact,
+                            org.sonatype.aether,
                             org.sonatype.aether.collection,
                             org.sonatype.aether.deployment,
                             org.sonatype.aether.graph,

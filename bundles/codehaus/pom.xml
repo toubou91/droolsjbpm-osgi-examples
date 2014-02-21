@@ -92,6 +92,7 @@
                             org.codehaus.classworlds*;version=${plexus-classworlds-version},
                             org.codehaus.plexus.component*;version=${plexus-container-default-version},
                             org.codehaus.plexus.configuration*;version=${plexus-container-default-version},
+                            org.codehaus.plexus.lifecycle*;version=${plexus-container-default-version},
                             org.codehaus.plexus.classworlds*;version=${plexus-classworlds-version},
                             org.codehaus.plexus.component.annotations;version=${plexus-component-annotations-version},
                             org.codehaus.plexus.interpolation*;version=${plexus-interpolation-version},

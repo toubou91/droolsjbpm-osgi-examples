@@ -33,7 +33,7 @@ public class ProcessActivator implements BundleActivator {
             ksession.insert("Hello");
             ksession.fireAllRules();
 
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         }
     }
 

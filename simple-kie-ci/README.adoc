@@ -41,12 +41,11 @@
     features:install -c simple-kie-ci
 
 -  TODO
-    abcd : test
-    abcd : test
-    abcd : test
-    abcd : test
-    abcd : test
-    abcd : test
+
+    This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo
+    I say : Hello
+    I say : Hello
+    I say : Hello
 
 ISSUES
 

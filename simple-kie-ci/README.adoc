@@ -40,12 +40,16 @@
     features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
     features:install -c simple-kie-ci
 
--  TODO
+-  TODO - Explain what we do with Kie-Ci, KieSession ...
+
+    Result display after a few seconds on karaf console
 
     This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo
     I say : Hello
     I say : Hello
     I say : Hello
+
+    **************************************
 
 ISSUES
 

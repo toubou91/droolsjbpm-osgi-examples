@@ -26,7 +26,7 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
   mvn clean install
 
 
-== Download and Install on Apache Karaf
+== Download and deploy on Apache Karaf
 
 - Open a browser at the following address : http://karaf.apache.org/index/community/download.html#Karaf2.3.3
 - Download `karaf`

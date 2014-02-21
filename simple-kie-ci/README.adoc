@@ -1,0 +1,152 @@
+:source-highlighter: highlights
+:data-uri:
+
+= Simple Kie Ci Example
+
+== Instructions to install the example on Apache Karaf or JBoss Fuse
+
+- Move to `simple-kie-ci` example directory
+
+  cd droolsjbpm-osgi-examples/simple-kie-ci
+
+- Compile it using `maven`
+
+  mvn clean install
+
+== Download and deploy on Apache Karaf
+
+- Open a browser at the following address : http://karaf.apache.org/index/community/download.html#Karaf2.3.3
+- Download `karaf`
+- Unzip it under your local temp directory ~/temp
+- Change to the Karaf bin directory
+  cd ~/temp/apache-karaf-2.3.3/bin
+
+- Start karaf console
+
+  cd bin
+  ./karaf
+
+- Install the features file containing the modules to be installed
+
+  We will install different modules :
+  - Kie-Ci
+  - Apache Maven
+  - Codehaus Plexus
+  - Sonatype Aether
+  - Sisu Guice/Guava
+
+ - Execute the following commands
+
+    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:install -c simple-kie-ci
+
+-  TODO
+    abcd : test
+    abcd : test
+    abcd : test
+    abcd : test
+    abcd : test
+    abcd : test
+
+ISSUES
+
+    When we use command ctrl-c, the following error is rerported
+
+    ```
+    ^C
+    Error executing command: Could not start bundle mvn:org.drools.example/simple-kie-ci/1.0.0-SNAPSHOT in feature(s) simple-kie-ci-6.1.0-SNAPSHOT: Activator start error in bundle simple-kie-ci [100].
+    2014-02-21 18:56:17,079 | ERROR | l Console Thread | Console                          | araf.shell.console.jline.Console  199 | 14 - org.apache.karaf.shell.console - 2.3.3 | Exception caught while executing command
+    java.lang.Exception: Could not start bundle mvn:org.drools.example/simple-kie-ci/1.0.0-SNAPSHOT in feature(s) simple-kie-ci-6.1.0-SNAPSHOT: Activator start error in bundle simple-kie-ci [100].
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeatures(FeaturesServiceImpl.java:491)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeature(FeaturesServiceImpl.java:405)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeature(FeaturesServiceImpl.java:401)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.command.InstallFeatureCommand.doExecute(InstallFeatureCommand.java:62)[32:org.apache.karaf.features.command:2.3.3]
+    	at org.apache.karaf.features.command.FeaturesCommandSupport.doExecute(FeaturesCommandSupport.java:41)[32:org.apache.karaf.features.command:2.3.3]
+    	at org.apache.karaf.shell.console.OsgiCommandSupport.execute(OsgiCommandSupport.java:38)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.commands.basic.AbstractCommand.execute(AbstractCommand.java:35)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.CommandProxy.execute(CommandProxy.java:78)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.executeCmd(Closure.java:474)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.executeStatement(Closure.java:400)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Pipe.run(Pipe.java:108)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.execute(Closure.java:183)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.execute(Closure.java:120)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.CommandSessionImpl.execute(CommandSessionImpl.java:89)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.karaf.shell.console.jline.Console.run(Console.java:173)[14:org.apache.karaf.shell.console:2.3.3]
+    	at java.lang.Thread.run(Thread.java:744)[:1.7.0_51]
+    Caused by: org.osgi.framework.BundleException: Activator start error in bundle simple-kie-ci [100].
+    	at org.apache.felix.framework.Felix.activateBundle(Felix.java:2027)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.Felix.startBundle(Felix.java:1895)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.BundleImpl.start(BundleImpl.java:944)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.BundleImpl.start(BundleImpl.java:931)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeatures(FeaturesServiceImpl.java:488)[43:org.apache.karaf.features.core:2.3.3]
+    	... 15 more
+    Caused by: java.lang.InterruptedException: sleep interrupted
+    	at java.lang.Thread.sleep(Native Method)[:1.7.0_51]
+    	at org.drools.example.osgi.ProcessActivator.start(ProcessActivator.java:34)[100:simple-kie-ci:1.0.0.SNAPSHOT]
+    	at org.apache.felix.framework.util.SecureAction.startActivator(SecureAction.java:645)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.Felix.activateBundle(Felix.java:1977)[org.apache.felix.framework-4.0.3.jar:]
+    	... 19 more
+    ```
+
+    This warning is also reported during installation
+
+    ```
+    2014-02-21 18:51:40,683 | WARN  | l Console Thread | KieScanner                       | org.kie.scanner.ArtifactResolver   90 | 99 - org.kie.scanner.osgi - 6.1.0.20140221-1830 | Cannot use native maven pom parser, fall back to the internal one
+    java.lang.RuntimeException: org.kie.scanner.embedder.MavenEmbedderException: java.util.NoSuchElementException
+          role: org.apache.maven.execution.MavenExecutionRequestPopulator
+      roleHint:
+    	at org.kie.scanner.embedder.MavenProjectLoader.parseMavenPom(MavenProjectLoader.java:21)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.ArtifactResolver.getResolverFor(ArtifactResolver.java:88)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.ArtifactResolver.getResolverFor(ArtifactResolver.java:74)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.KieRepositoryScannerImpl.setKieContainer(KieRepositoryScannerImpl.java:62)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.drools.compiler.kie.builder.impl.KieServicesImpl.newKieScanner(KieServicesImpl.java:124)[80:org.drools.compiler:6.1.0.20140221-1703]
+    	at org.drools.example.osgi.ProcessActivator.start(ProcessActivator.java:24)[100:simple-kie-ci:1.0.0.SNAPSHOT]
+    	at org.apache.felix.framework.util.SecureAction.startActivator(SecureAction.java:645)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.Felix.activateBundle(Felix.java:1977)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.Felix.startBundle(Felix.java:1895)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.BundleImpl.start(BundleImpl.java:944)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.felix.framework.BundleImpl.start(BundleImpl.java:931)[org.apache.felix.framework-4.0.3.jar:]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeatures(FeaturesServiceImpl.java:488)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeature(FeaturesServiceImpl.java:405)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.internal.FeaturesServiceImpl.installFeature(FeaturesServiceImpl.java:401)[43:org.apache.karaf.features.core:2.3.3]
+    	at org.apache.karaf.features.command.InstallFeatureCommand.doExecute(InstallFeatureCommand.java:62)[32:org.apache.karaf.features.command:2.3.3]
+    	at org.apache.karaf.features.command.FeaturesCommandSupport.doExecute(FeaturesCommandSupport.java:41)[32:org.apache.karaf.features.command:2.3.3]
+    	at org.apache.karaf.shell.console.OsgiCommandSupport.execute(OsgiCommandSupport.java:38)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.commands.basic.AbstractCommand.execute(AbstractCommand.java:35)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.CommandProxy.execute(CommandProxy.java:78)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.executeCmd(Closure.java:474)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.executeStatement(Closure.java:400)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Pipe.run(Pipe.java:108)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.execute(Closure.java:183)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.Closure.execute(Closure.java:120)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.felix.gogo.runtime.CommandSessionImpl.execute(CommandSessionImpl.java:89)[14:org.apache.karaf.shell.console:2.3.3]
+    	at org.apache.karaf.shell.console.jline.Console.run(Console.java:173)[14:org.apache.karaf.shell.console:2.3.3]
+    	at java.lang.Thread.run(Thread.java:744)[:1.7.0_51]
+    Caused by: org.kie.scanner.embedder.MavenEmbedderException: java.util.NoSuchElementException
+          role: org.apache.maven.execution.MavenExecutionRequestPopulator
+      roleHint:
+    	at org.kie.scanner.embedder.MavenEmbedder.<init>(MavenEmbedder.java:109)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.embedder.MavenEmbedder.<init>(MavenEmbedder.java:88)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.embedder.MavenEmbedder.<init>(MavenEmbedder.java:115)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.embedder.MavenProjectLoader.parseMavenPom(MavenProjectLoader.java:18)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	... 26 more
+    Caused by: org.codehaus.plexus.component.repository.exception.ComponentLookupException: java.util.NoSuchElementException
+          role: org.apache.maven.execution.MavenExecutionRequestPopulator
+      roleHint:
+    	at org.codehaus.plexus.DefaultPlexusContainer.lookup(DefaultPlexusContainer.java:257)[98:org.sonatype.inject.plexus:2.3.0]
+    	at org.codehaus.plexus.DefaultPlexusContainer.lookup(DefaultPlexusContainer.java:245)[98:org.sonatype.inject.plexus:2.3.0]
+    	at org.codehaus.plexus.DefaultPlexusContainer.lookup(DefaultPlexusContainer.java:239)[98:org.sonatype.inject.plexus:2.3.0]
+    	at org.kie.scanner.embedder.MavenEmbedder.lookup(MavenEmbedder.java:492)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.embedder.MavenEmbedder.buildMavenExecutionRequest(MavenEmbedder.java:136)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	at org.kie.scanner.embedder.MavenEmbedder.<init>(MavenEmbedder.java:99)[99:org.kie.scanner.osgi:6.1.0.20140221-1830]
+    	... 29 more
+    Caused by: java.util.NoSuchElementException
+    	at org.sonatype.guice.bean.locators.LocatedBeans$Itr.next(LocatedBeans.java:142)[97:org.sonatype.inject:2.3.0]
+    	at org.sonatype.guice.bean.locators.LocatedBeans$Itr.next(LocatedBeans.java:77)[97:org.sonatype.inject:2.3.0]
+    	at org.sonatype.guice.plexus.locators.DefaultPlexusBeans$Itr.next(DefaultPlexusBeans.java:60)[98:org.sonatype.inject.plexus:2.3.0]
+    	at org.sonatype.guice.plexus.locators.DefaultPlexusBeans$Itr.next(DefaultPlexusBeans.java:48)[98:org.sonatype.inject.plexus:2.3.0]
+    	at org.codehaus.plexus.DefaultPlexusContainer.lookup(DefaultPlexusContainer.java:253)[98:org.sonatype.inject.plexus:2.3.0]
+    	... 34 more
+    ```
+
+

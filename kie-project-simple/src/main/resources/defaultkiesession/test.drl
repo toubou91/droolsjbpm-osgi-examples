@@ -3,5 +3,5 @@ package defaultkiesession
 rule "rule 1" when
     $s : String( )
 then
-    System.out.println( "abc" + $s );
+    System.out.println( "I say : " + $s );
 end

@@ -119,9 +119,9 @@
         <module>simple-decisiontable</module>
         <module>simple-external-resource</module>
         <module>watch-external-resource</module>
-        <module>kie-project-simple</module>
         <module>simple-kie-ci</module>
         <module>simple-jbpm</module>
+        <module>kie-project-simple</module>
         <!--        <module>camel-kie-spring</module>
         <module>camel-kie-blueprint</module>-->
     </modules>

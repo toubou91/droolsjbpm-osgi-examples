@@ -52,6 +52,7 @@
             <Import-Package>
               org.slf4j,
               org.apache.maven.model.normalization,
+              org.apache.maven.execution,
               org.drools.core;version="[6.0,7)",
               org.drools.core.base;version="[6.0,7)",
               org.drools.core.base.accumulators;version="[6.0,7)",

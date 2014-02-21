@@ -16,4 +16,9 @@ Bundles to be deployed on karaf
     install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asm/3.1_3
     install -s mvn:org.apache.xbean/xbean-asm-shaded/3.9
 
+    install -s mvn:org.sonatype.sisu/sisu-inject-bean/2.2.3
+    install -s mvn:org.sonatype.sisu/sisu-inject-plexus/2.3.4
     install -s wrap:mvn:org.sonatype.plexus/plexus-sec-dispatcher/1.4
+[ 125] [Resolved   ] [            ] [   80] mvn:org.sonatype.sisu/sisu-guice/3.1.1
+[ 126] [Resolved   ] [            ] [   80] mvn:org.sonatype.sisu/sisu-guava/0.11.1
+[ 127] [Active     ] [            ] [   80] mvn:org.sonatype.sisu/sisu-guice/3.0.3

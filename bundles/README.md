@@ -18,7 +18,7 @@ Bundles to be deployed on karaf
 
     install -s wrap:mvn:org.sonatype.plexus/plexus-sec-dispatcher/1.4
 
-    install -s mvn:org.sonatype.sisu/sisu-guava/0.11.1
     install -s mvn:org.sonatype.sisu/sisu-guice/3.1.1
-    install -s mvn:org.sonatype.sisu/sisu-inject-bean/2.2.3
-    install -s mvn:org.sonatype.sisu/sisu-inject-plexus/2.3.4
+    install -s mvn:org.sonatype.sisu/sisu-guava/0.11.1
+    install -s wrap:mvn:org.sonatype.sisu/sisu-inject-bean/2.3.0
+    install -s wrap:mvn:org.sonatype.sisu/sisu-inject-plexus/2.3.0

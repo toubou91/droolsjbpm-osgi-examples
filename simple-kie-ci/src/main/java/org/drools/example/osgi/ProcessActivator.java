@@ -39,9 +39,7 @@ public class ProcessActivator implements BundleActivator {
                 Thread.sleep(10000);
             }
         } catch (InterruptedException e) {
-            System.out.println("Ctrl-c command executed. Process interrupted");
-        } catch (NoSuchElementException ne) {
-            ne.printStackTrace();
+            System.out.println("Ctrl-c command executed. Process to fire rules interrupted");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

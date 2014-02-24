@@ -14,6 +14,7 @@
         <module>maven</module>
         <module>codehaus</module>
         <module>aether</module>
+        <module>wagon</module>
     </modules>
 
 </project>

@@ -11,8 +11,8 @@
     </parent>
 
     <groupId>org.apache.servicemix.bundles</groupId>
-    <artifactId>org.apache.servicemix.bundles.maven-3.0.5</artifactId>
-    <version>1.0</version>
+    <artifactId>org.apache.servicemix.bundles.maven</artifactId>
+    <version>3.0.5_1</version>
     <packaging>bundle</packaging>
     <name>Apache ServiceMix :: Bundles :: Maven</name>
     <description>This OSGi bundle wraps Apache Maven (core, model, compat, settings, builder, aether-provider) ${pkgVersion} jar file.</description>
@@ -23,11 +23,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.sonatype.sisu</groupId>
-            <artifactId>sisu-guice</artifactId>
-            <version>3.1.1</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-aether-provider</artifactId>
@@ -87,7 +82,7 @@
                                     <include>${pkgGroupId}:maven-core</include>
                                 </includes>
                             </artifactSet>
-                            <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+                            <promoteTransitiveDependencies>false</promoteTransitiveDependencies>
                             <createDependencyReducedPom>true</createDependencyReducedPom>
                         </configuration>
                     </execution>
@@ -103,6 +98,7 @@
                         <Bundle-Description>${project.description}</Bundle-Description>
                         <Export-Package>
                             !org.codehaus.plexus.classworlds*,
+                            !org.apache.maven.wagon*,
                             org.apache.maven*;version=${pkgVersion};-split-package:=merge-first
                         </Export-Package>
                         <Import-Package>

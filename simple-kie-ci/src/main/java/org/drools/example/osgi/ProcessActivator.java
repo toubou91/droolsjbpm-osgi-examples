@@ -14,46 +14,63 @@ public class ProcessActivator implements BundleActivator {
 
     private KieScanner kScanner;
     private KieSession kSession;
+    private kieThread kieThread;
 
     @Override
     public void start(BundleContext bundleContext) {
-        try {
-            KieServices kieServices = KieServices.Factory.get();
-
-            ReleaseId releaseId = kieServices.newReleaseId("org.test", "kie-project-simple", "1.0");
-
-            KieContainer kContainer = kieServices.newKieContainer(releaseId);
-
-            kScanner = kieServices.newKieScanner(kContainer);
-
-            System.out.println("This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo");
-
-            for (int i = 0; i < 100; i++) {
-
-                kScanner.scanNow();
-
-                kSession = kContainer.newKieSession();
-                kSession.insert("Hello");
-                kSession.fireAllRules();
-
-                Thread.sleep(10000);
-            }
-        } catch (InterruptedException e) {
-            System.out.println("Ctrl-c command executed. Process to fire rules interrupted");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        kieThread = new kieThread();
+        kieThread.start();
     }
 
     @Override
     public void stop(BundleContext bundleContext) throws Exception {
-        if (this.kScanner != null) {
-            this.kScanner.stop();
-            System.out.println("KieScanner stopped.");
+        kieThread.stopThread();
+    }
+
+    public class kieThread extends Thread {
+
+        private volatile boolean active = true;
+
+        public void run() {
+            while (active) {
+                KieServices kieServices = KieServices.Factory.get();
+
+                ReleaseId releaseId = kieServices.newReleaseId("org.test", "kie-project-simple", "1.0");
+
+                KieContainer kContainer = kieServices.newKieContainer(releaseId);
+
+                kScanner = kieServices.newKieScanner(kContainer);
+
+                System.out.println("This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo");
+
+                // Scan to discover new resources of an existing artifact
+                kScanner.scanNow();
+
+                for (int i = 0; i < 100; i++) {
+                    // Create a stateless session
+                    kSession = kContainer.newKieSession();
+                    kSession.insert("Hello");
+                    kSession.fireAllRules();
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        System.out.println("Thread interrupted. Firing of rules will stop.");
+                    }
+                }
+
+            }
         }
-        if (this.kSession != null) {
-            this.kSession.dispose();
-            System.out.println("KieSession disposed.");
+
+        public void stopThread() {
+            active = false;
+            if (kScanner != null) {
+                kScanner.stop();
+                System.out.println("KieScanner stopped.");
+            }
+            if (kSession != null) {
+                kSession.dispose();
+                System.out.println("KieSession disposed.");
+            }
         }
     }
 }

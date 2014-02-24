@@ -11,8 +11,8 @@
     </parent>
 
     <groupId>org.apache.servicemix.bundles</groupId>
-    <artifactId>org.apache.servicemix.bundles.aether-1.13</artifactId>
-    <version>1.0</version>
+    <artifactId>org.apache.servicemix.bundles.aether</artifactId>
+    <version>1.13.1_1</version>
     <packaging>bundle</packaging>
     <name>Apache ServiceMix :: Bundles :: Aether</name>
     <description>This OSGi bundle wraps Aether jar file.</description>

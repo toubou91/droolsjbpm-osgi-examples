@@ -53,7 +53,9 @@
 
 ISSUES
 
-    When we update the example bundle, this error is generated
+1) Cannot change KieContainer on an already initialized KieScanner
+
+When we update the example bundle, this error is generated
 
     ```
     Caused by: java.lang.RuntimeException: Cannot change KieContainer on an already initialized KieScanner
@@ -65,7 +67,8 @@ ISSUES
 	... 16 more
     ```
 
-    Bundle status is not started
+2) Bundle status is not started
+   
     ```
     2014-02-21 19:29:28,466 | ERROR | l Console Thread | Console                          | araf.shell.console.jline.Console  199 | 14 - org.apache.karaf.shell.console - 2.3.3 | Exception caught while executing command
     org.osgi.framework.BundleException: Bundle simple-kie-ci [102] cannot be update, since it is either starting or stopping.
@@ -76,7 +79,9 @@ ISSUES
     ```
 
 
-    This warning message is also reported during installation
+3) Warning message
+
+This warning message is also reported during installation
 
     ```
     2014-02-21 18:51:40,683 | WARN  | l Console Thread | KieScanner                       | org.kie.scanner.ArtifactResolver   90 | 99 - org.kie.scanner.osgi - 6.1.0.20140221-1830 | Cannot use native maven pom parser, fall back to the internal one

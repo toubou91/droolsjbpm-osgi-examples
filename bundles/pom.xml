@@ -15,6 +15,7 @@
         <module>codehaus</module>
         <module>aether</module>
         <module>wagon</module>
+        <module>plexus</module>
     </modules>
 
 </project>

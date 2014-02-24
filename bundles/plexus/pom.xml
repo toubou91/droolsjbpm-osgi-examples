@@ -11,28 +11,28 @@
     </parent>
 
     <groupId>org.apache.servicemix.bundles</groupId>
-    <artifactId>org.apache.servicemix.bundles.wagon</artifactId>
-    <version>2.4_1</version>
+    <artifactId>org.apache.servicemix.bundles.plexus</artifactId>
+    <version>1.4_1</version>
     <packaging>bundle</packaging>
-    <name>Apache ServiceMix :: Bundles :: Maven Wagon</name>
-    <description>This OSGi bundle wraps Maven Wagon (http, provide-api) jar file.</description>
+    <name>Apache ServiceMix :: Bundles :: Sonatype Plexus</name>
+    <description>This OSGi bundle wraps Sonatype Plexus (cipher, Sec-Dispatcher) jar file.</description>
 
     <properties>
-        <pkgGroupId>org.apache.maven.wagon</pkgGroupId>
-        <maven-wagon-version>2.4</maven-wagon-version>
-        <pkgVersion>2.4</pkgVersion>
+        <pkgGroupId>org.sonatype.plexus</pkgGroupId>
+        <plexus-cipher-version>1.4</plexus-cipher-version>
+        <pkgVersion>1.4</pkgVersion>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-http</artifactId>
-            <version>${maven-wagon-version}</version>
+            <groupId>org.sonatype.plexus</groupId>
+            <artifactId>plexus-cipher</artifactId>
+            <version>${plexus-cipher-version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-provider-api</artifactId>
-            <version>${maven-wagon-version}</version>
+            <groupId>org.sonatype.plexus</groupId>
+            <artifactId>plexus-sec-dispatcher</artifactId>
+            <version>${plexus-cipher-version}</version>
         </dependency>
     </dependencies>
 
@@ -49,8 +49,8 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>${pkgGroupId}:maven-wagon-http</include>
-                                    <include>${pkgGroupId}:maven-provider-api</include>
+                                    <include>${pkgGroupId}:plexus-cipher</include>
+                                    <include>${pkgGroupId}:plexus-sec-dispatcher</include>
                                 </includes>
                             </artifactSet>
                             <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
@@ -68,7 +68,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
                         <Export-Package>
-                            org.apache.maven.wagon*;version=${pkgVersion};-split-package:=merge-first
+                            org.sonatype.plexus*;version=${pkgVersion};-split-package:=merge-first
                         </Export-Package>
                         <Import-Package>
                             *

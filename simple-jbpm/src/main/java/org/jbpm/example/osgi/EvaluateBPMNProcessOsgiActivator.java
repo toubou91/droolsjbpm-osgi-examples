@@ -39,7 +39,7 @@ public class EvaluateBPMNProcessOsgiActivator implements BundleActivator {
 
         LOG.info("Register tasks");
         ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
-        ksession.getWorkItemManager().registerWorkItemHandler("Register Request", new SystemOutWorkItemHandler());
+        ksession.getWorkItemManager().registerWorkItemHandler("RegisterRequest", new SystemOutWorkItemHandler());
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("employee", "UserId-12345");

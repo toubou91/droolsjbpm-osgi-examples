@@ -84,6 +84,10 @@
               org.osgi.framework.wiring,
               org.osgi.framework
             </Import-Package>
+            <Export-Package>
+                !org.kie.api,
+                !org.osgi.framework
+            </Export-Package>
           </instructions>
         </configuration>
       </plugin>

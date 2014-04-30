@@ -16,13 +16,11 @@ public class ProcessActivator implements BundleActivator {
     private KieSession kSession;
     private kieThread kieThread;
 
-    @Override
     public void start(BundleContext bundleContext) {
         kieThread = new kieThread();
         kieThread.start();
     }
 
-    @Override
     public void stop(BundleContext bundleContext) throws Exception {
         kieThread.stopThread();
     }
@@ -35,13 +33,15 @@ public class ProcessActivator implements BundleActivator {
             while (active) {
                 KieServices kieServices = KieServices.Factory.get();
 
-                ReleaseId releaseId = kieServices.newReleaseId("org.test", "kie-project-simple", "1.0");
+                ReleaseId releaseId = kieServices.newReleaseId("org.test",
+                        "kie-project-simple", "1.0");
 
                 KieContainer kContainer = kieServices.newKieContainer(releaseId);
 
                 kScanner = kieServices.newKieScanner(kContainer);
 
-                System.out.println("This is a Kie-Ci example. The drl rule is packaged as a kmodule in a jar and deployed in your maven repo");
+                System.out.println("This is a Kie-Ci example. The drl rule is packaged " +
+                        "as a kmodule in a jar and deployed in your maven repo");
 
                 // Scan to discover new resources of an existing artifact
                 kScanner.scanNow();

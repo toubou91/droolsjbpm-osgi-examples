@@ -256,4 +256,12 @@ ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
 LOG.info("Stated completed");
 ----
 
+=== Kie Spring with Camel & Drools
+
+features:install drools-decisiontable-kie-spring-camel
+
+=== Kie Blueprint with Camel & Drools
+
+features:install drools-decisiontable-kie-blueprint-camel
+
 Enjoy it !

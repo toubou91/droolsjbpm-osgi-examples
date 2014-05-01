@@ -6,6 +6,10 @@
 
     <repository>mvn:org.drools/drools-karaf-features/${drools.version}/xml/features</repository>
 
+    <feature name="lib" version="${project.version}">
+        <bundle>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.scripting-api-1.0/2.4.0</bundle>
+    </feature>
+
     <!-- Drools OSGi Examples -->
     <feature name="simple-rule" version="${drools.version}"
              description="Simple Drools OSGi Example :: Rule = Can drink">
@@ -85,14 +89,14 @@
     </feature>
 
     <!-- Spring/Blueprint & Drools OSGI -->
-    <feature name="drools-decision-table-kie-spring-camel-example" version="${drools.version}" description="Drools Decision Table Kie Spring Camel Example">
+    <feature name="drools-decisiontable-kie-spring-camel" version="${drools.version}" description="Drools Decision Table Kie Spring Camel Example">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <feature version="${drools.version}">kie-spring</feature>
         <feature version="${drools.version}">kie-camel</feature>
         <bundle start-level="100">mvn:org.drools.example/spring-camel-decision-table/${project.version}</bundle>
     </feature>
-    <feature name="drools-decision-kie-blueprint-camel-example" version="${drools.version}" description="Drools Decision Table Kie Blueprint Camel Example">
+    <feature name="drools-decisiontable-kie-blueprint-camel" version="${drools.version}" description="Drools Decision Table Kie Blueprint Camel Example">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <feature version="${drools.version}">kie-aries-blueprint</feature>

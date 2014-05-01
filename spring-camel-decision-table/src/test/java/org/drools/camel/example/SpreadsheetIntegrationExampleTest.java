@@ -32,7 +32,7 @@ import org.kie.internal.io.ResourceFactory;
 
 import static org.junit.Assert.*;
 
-public class SpreadsheetIntegrationExampleTest {
+public class    SpreadsheetIntegrationExampleTest {
 
     @Test
     public void testExecuteUsingKieAPI() throws Exception {

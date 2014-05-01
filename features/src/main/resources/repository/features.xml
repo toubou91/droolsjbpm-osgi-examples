@@ -27,13 +27,13 @@
         <bundle>mvn:org.drools.example/fetch-external-resource/${project.version}</bundle>
     </feature>
 
-    <feature name="watch-external-resource" version="${drools.version}"
-             description="Drools OSGi Example fetching resources externally and doing incremental build">
+<!--    <feature name="watch-external-resource" version="${drools.version}"
+             description="Drools OSGi Example fetching resources externaly and doing incremental build">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <feature version="${drools.version}">kie-ci</feature>
         <bundle>mvn:org.drools.example/watch-external-resource/${project.version}</bundle>
-    </feature>
+    </feature>-->
 
     <!-- jBPMN OSGi Examples -->
     <feature name="simple-process" version="${drools.version}" description="jBPM OSGi Example :: Simple Process">
@@ -70,18 +70,40 @@
         <bundle>mvn:org.kie/kie-ci-osgi/${drools.version}</bundle>
     </feature>
 
-    <feature name="my-kie-ci2" version="${drools.version}">
+<!--    <feature name="my-kie-ci2" version="${drools.version}">
         <bundle>mvn:org.apache.xbean/xbean-reflect/3.9</bundle>
         <bundle>mvn:org.apache.xbean/xbean-asm-shaded/3.9</bundle>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.all/1.0</bundle>
         <bundle>mvn:org.kie/kie-ci-osgi/${drools.version}</bundle>
-    </feature>
+    </feature>-->
 
     <!-- Simple Kie Example -->
     <feature name="simple-kie-ci" version="${drools.version}">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${drools.version}">my-kie-ci</feature>
         <bundle>mvn:org.drools.example/simple-kie-ci/1.0.0-SNAPSHOT</bundle>
+    </feature>
+
+    <!-- Spring/Blueprint & Drools OSGI -->
+    <feature name="drools-decision-table-kie-spring-camel-example" version="${drools.version}" description="Drools Decision Table Kie Spring Camel Example">
+        <feature version="${drools.version}">drools-module</feature>
+        <feature version="${drools.version}">drools-decisiontable</feature>
+        <feature version="${drools.version}">kie-spring</feature>
+        <feature version="${drools.version}">kie-camel</feature>
+        <bundle start-level="100">mvn:org.drools.example/spring-camel-decision-table/${project.version}</bundle>
+    </feature>
+    <feature name="drools-decision-kie-blueprint-camel-example" version="${drools.version}" description="Drools Decision Table Kie Blueprint Camel Example">
+        <feature version="${drools.version}">drools-module</feature>
+        <feature version="${drools.version}">drools-decisiontable</feature>
+        <feature version="${drools.version}">kie-aries-blueprint</feature>
+        <feature version="${drools.version}">kie-camel</feature>
+        <bundle>mvn:org.drools.example/blueprint-camel-decision-table/${project.version}</bundle>
+    </feature>
+
+    <!-- Spring jBPM OSGI -->
+    <feature name="jbpm-example" version="${drools.version}" description="jBPM Spring Example">
+        <feature version="${drools.version}">jbpm</feature>
+        <bundle>mvn:org.drools.example/spring-jbpm/${project.version}</bundle>
     </feature>
 
 

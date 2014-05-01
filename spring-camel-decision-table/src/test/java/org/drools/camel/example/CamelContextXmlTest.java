@@ -22,7 +22,7 @@ import java.util.Collection;
 
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.test.junit4.CamelSpringTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.drools.compiler.kproject.ReleaseIdImpl;
 import org.drools.core.runtime.impl.ExecutionResultImpl;
 import org.junit.Ignore;

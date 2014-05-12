@@ -256,6 +256,10 @@
         <module>simple-kie-ci</module>
         <module>kie-project-simple</module>
 
+        <!-- Kie, Drools & Bundles -->
+        <module>kie-project-bundle</module>
+        <module>simple-kie-bundle</module>
+
         <!-- Spring/Blueprint Drools & Camel -->
         <module>blueprint-camel-decision-table</module>
         <module>spring-camel-decision-table</module>

@@ -49,9 +49,11 @@ Procedure is exactly the same excepted that you should download *Apache Karaf* o
 
 == Add Repositories of the modules
 
-Add location of the url pointing to the file containing the description of the Drools OSGI modules
+In the JBoss Fuse/Karaf console, add the url pointing to the file containing the description of the Drools/jBPM OSGI modules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+
+Now you are ready to start to play with different examples described hereafter !
 
 == Drools OSGi Example
 
@@ -266,9 +268,43 @@ LOG.info("Stated completed");
 
 === Kie Spring with Camel & Drools
 
+This example combines the http://camel.apache.org[Camel Java Integration framework] with Drools to insert the facts/objects into a KieSession
+created and managed by camel. The objects created (= Person) whenever they are inserted in the KieSession will be
+
+To run the project on JBoss Fuse, simply run this features:install command to deploy the bundles. After being deployed the bundle containing the
+camel routes definition will be started and the camel timer component will fire events every 10s to request to create a Person object or Cheese object as we have 2 camel routes.
+
+[source, xml]
+----
+<route trace="false" id="testRoute">
+  <description>Example route that will regularly create a Person with a random age and verify their age
+  </description>
+  <from uri="timer:testRoute?period=10s"/>
+  <bean method="createTestPerson" ref="personHelper"/>
+  <to uri="kie:ksession1?action=insertBody" id="AgeVerification"/>
+  <choice>
+    <when id="CanDrink">
+      <simple>${body.canDrink}</simple>
+      <log logName="Bar" message="Person ${body.name} can go to the bar"/>
+    </when>
+    <otherwise>
+      <log logName="Home" message="Person ${body.name} is staying home"/>
+    </otherwise>
+  </choice>
+</route>
+----
+
+One camel route is used by Drools and the other by Drools DecisionTable.
+
+The object created (= fact) is inserted into the KieSession used by Drools and when this is done the rules will be fired automatically.
+To play with the project, use the following `features:install` command to deploy the bundles on JBoss Fuse.
+
 features:install drools-decisiontable-kie-spring-camel
 
 === Kie Blueprint with Camel & Drools
+
+Same example as described before but instead of Spring Dynamic Module priject, we will setup the project using the http://www.ibm.com/developerworks/library/os-osgiblueprint/[OSGI Blueprint container]
+to instantiate the beans required to start the CamelContext containing the camel routes like also the beans handling the business logic (PersonHelper, CheeseHelper, ...).
 
 features:install drools-decisiontable-kie-blueprint-camel
 

@@ -19,11 +19,11 @@
         <bundle>mvn:org.drools.example/simple/${project.version}</bundle>
     </feature>
 
-    <feature name="simple-imported-rule" version="${drools.version}"
+    <feature name="simple-import-rule" version="${drools.version}"
              description="Simple Drools OSGi Example importing rules from another bundle :: Rule = Can drink">
         <feature version="${drools.version}">drools-module</feature>
         <feature version="${project.version}">lib</feature>
-        <bundle>mvn:org.drools.example/simple-kie-bundle/${project.version}</bundle>
+        <bundle>mvn:org.drools.example/assets-bundle/${project.version}</bundle>
         <bundle>mvn:org.drools.example/kie-project-bundle/${project.version}</bundle>
     </feature>
 

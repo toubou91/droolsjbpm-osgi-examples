@@ -257,7 +257,7 @@
         <module>kie-project-simple</module>
 
         <!-- Kie, Drools & Bundles -->
-        <module>kie-project-bundle</module>
+        <module>assets-bundle</module>
         <module>simple-kie-bundle</module>
 
         <!-- Spring/Blueprint Drools & Camel -->

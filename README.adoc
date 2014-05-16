@@ -59,7 +59,7 @@ Now you are ready to start to play with different examples described hereafter !
 
 === Simple Rule Example
 
-To test the simple rule example which is a Drools example using a simple rule DRL
+To test the simple rule example which is a Drools example using a rule DRL
 
 [source,java]
 ----
@@ -77,13 +77,13 @@ like `kie` project (api & internal)
 
   features:install simple-rule
 
-After a few moment, you will see that the Bundle has been installed and started as the Activator class will report the following message
+After a few moment, you will see that the `bundle` has been installed and started as the Activator class will report the following message
 
     KieSession created.
 
-corresponding to the KieSession created by Kie & Drools after discovering the META-INF/kmodules.xml file containing the location of the resources
+corresponding to the KieSession created by Kie & Drools after discovering the META-INF/kmodule.xml file containing the location of the resources
 to be loaded by Drools (Rule, ...).
-This session is created as the start method of the bundle activator class contains code to crteate a KieContainer, KieBaseConfiguration
+This session is created as the start method of the bundle activator class contains the code to create a KieContainer, KieBaseConfiguration & KieBase
 
 [source,java]
 ----
@@ -121,6 +121,29 @@ to verify if they can Drink according to their age.
 Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of Karaf
 
     KieSession disposed
+
+=== Externalise the rules assets
+
+One of the benefit of an OSGI platform is that the bundles (= jar file + META DATA defined in the MANIFEST.mf file) are isolated form
+each other as they run within their own classloader. That means that we can split a Drools & Kie project into a collection of bundles: one containing
+the logic and the Kie classes to build the container hosting the KieBase (= assets), KieSessions (= in cache memory of the facts/objects) while the
+assets can be packaged in a separate bundle. This approach allows the business user to produce the jar containing the rules, decision tables, ...
+according to a procedure (= release management) which is independent from the one followed by developer team to design/develop the project.
+As the assets will be deployed in a separate bundle, they can be updated without changing the code of the project.
+
+This demo which uses the same code as the example "Simple Rule Example" but it has been packaged into 2 bundles.
+
+The assets
+
+image:documentation/images/assets.png[]
+
+and the Kie
+
+image:documentation/images/kie-bundle.png[]
+
+The project can be deployed using this feature command
+
+features:install simple-import-rule
 
 === Simple XLS Decision Table with a Rule Example
 
@@ -240,7 +263,7 @@ which will install the bundles required (jbpm, Human-task, ...) and finally the 
 
 The process is simple and start by logging information that process has been initiated before to diverge, register a request and finally converge at the end
 
-image:documentation/images/evaluation-process.png[]
+c
 
 To configure the runtime manage with the bpmn process file, you should add assets using a `ResourceFactory.newClassPathResource` with the package name containing it
 

@@ -10,9 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.drools.example</groupId>
-    <artifactId>kie-project-bundle</artifactId>
+    <artifactId>asset-bundle</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Drools OSGI Example :: Kie Bundle Project</name>
+    <name>Drools OSGI Example :: Assets Bundle</name>
     <packaging>bundle</packaging>
 
     <build>

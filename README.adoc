@@ -143,7 +143,7 @@ image:documentation/images/kie-bundle.png[]
 
 The project can be deployed using this feature command
 
-features:install simple-import-rule
+    features:install simple-import-rule
 
 === Simple XLS Decision Table with a Rule Example
 

@@ -7,9 +7,11 @@
 toc::[]
 
 This project contains Drools & jBPM OSGi examples that you can deploy on :
+supported release
+- https://www.jboss.org/products/fuse.html[RedHat JBoss Fuse 6.1]
+or community releases
 - http://karaf.apache.org[Apache Karaf]
 - http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
-- http://www.jboss.org/products/fuse[RedHat JBoss Fuse]
 
 == Download and compile the project
 
@@ -24,20 +26,25 @@ This project contains Drools & jBPM OSGi examples that you can deploy on :
 - Compile it using `maven`
 
   mvn clean install
+  
+== Download and deploy on RedHat JBoss Fuse
 
-
-== Download and deploy on Apache Karaf
-
-- Open a browser at the following address : http://karaf.apache.org/index/community/download.html#Karaf2.3.3
-- Download `karaf`
+- Open a browser at the following address : https://www.jboss.org/products/fuse.html
+- Download `JBoss Fuse 6.1`
 - Unzip it under your local temp directory ~/temp
-- Change to the Karaf bin directory
-  cd ~/temp/apache-karaf-2.3.3/bin
+- Change to the JBoss Fuse bin directory
+  cd ~/temp/jboss-fuse-6.1.0.redhat-379/bin
 
-- Start karaf console
+- Start Fuse console
 
-  cd bin
-  ./karaf
+  ./fuse
+  
+== Download and deploy on Apache Karaf/Fabric8
+
+Procedure is exactly the same excepted that you should download *Apache Karaf* or *Fabric8* releases
+
+- http://karaf.apache.org/index/community/download.html[Karaf 2.3.5]
+- http://fabric8.io/#/site/book/doc/index.md?chapter=getStarted_md[fabric8-karaf-1.1.0.Beta5 or more]
 
 == Add Repositories of the modules
 

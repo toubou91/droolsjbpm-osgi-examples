@@ -2,7 +2,7 @@
 :data-uri:
 :toc:
 
-== Drools & jBPM examples for OSGi deployment
+== Drools & jBPM examples for OSGi platforms (JBoss Fuse, Karaf, Fabric8)
 
 toc::[]
 
@@ -31,8 +31,9 @@ or community releases
 
 - Open a browser at the following address : https://www.jboss.org/products/fuse.html
 - Download `JBoss Fuse 6.1`
-- Unzip it under your local temp directory ~/temp
+- Unzip it under your local temp directory *~/temp*
 - Change to the JBoss Fuse bin directory
+
   cd ~/temp/jboss-fuse-6.1.0.redhat-379/bin
 
 - Start Fuse console

@@ -229,7 +229,9 @@ For later update of the XLS file, the bundle used for this example must be resta
 
     osgi:restart ID_OF_THE_BUNDLE
 
-=== Simple jBPM Process
+== jBPM OSGi Example
+
+=== Simple Process
 
 jbpmn process is also supported and can be deployed too on Karaf, JBoss Fuse container. Like the Drools Simple Rule Example, you should install a feature
 which will install the bundles required (jbpm, Human-task, ...) and finally the example
@@ -266,9 +268,14 @@ ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
 LOG.info("Stated completed");
 ----
 
+== Integration with Camel Example
+
+The Drools/jBPM has developed different kie modules that you can use to integrate this technology with Apache Camel to collect
+the information needed to prepare the facts/objects that we will next inserted into the KieSessions.
+
 === Kie Spring with Camel & Drools
 
-This example combines the http://camel.apache.org[Camel Java Integration framework] with Drools to insert the facts/objects into a KieSession
+This example combines the http://camel.apache.org[Camel Java Integration framework] with Drools and Spring (IoC framework) to insert the facts/objects into a KieSession
 created and managed by camel. The objects created (= Person) whenever they are inserted in the KieSession will be
 
 To run the project on JBoss Fuse, simply run this features:install command to deploy the bundles. After being deployed the bundle containing the

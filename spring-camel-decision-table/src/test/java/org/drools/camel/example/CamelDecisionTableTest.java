@@ -128,6 +128,6 @@ public class CamelDecisionTableTest extends CamelSpringTestSupport {
 
     @Override
     protected ClassPathXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context-decision-table.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context-decision-table.xml","META-INF/spring/kie.xml");
     }
 }

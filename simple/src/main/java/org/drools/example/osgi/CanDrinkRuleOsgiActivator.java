@@ -5,6 +5,7 @@ import org.drools.example.rule.PersonHelper;
 import org.kie.api.KieBase;
 import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
+import org.kie.api.conf.MBeansOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.osgi.framework.Bundle;
@@ -36,8 +37,6 @@ public class CanDrinkRuleOsgiActivator implements BundleActivator {
             // Check if it can drink
             PersonHelper.canDrink(aPerson);
         }
-
-
     }
 
     public void stop(final BundleContext bc) throws Exception {

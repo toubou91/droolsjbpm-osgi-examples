@@ -6,6 +6,7 @@
 
     <repository>mvn:org.drools/drools-karaf-features/${drools.version}/xml/features</repository>
 
+    <!-- This bundle should be removed with next release of Drools 6.1.Beta4 -->
     <feature name="lib" version="${project.version}">
         <bundle>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.scripting-api-1.0/2.4.0</bundle>
     </feature>
@@ -14,12 +15,14 @@
     <feature name="simple-rule" version="${drools.version}"
              description="Simple Drools OSGi Example :: Rule = Can drink">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <bundle>mvn:org.drools.example/simple/${project.version}</bundle>
     </feature>
 
     <feature name="simple-imported-rule" version="${drools.version}"
              description="Simple Drools OSGi Example importing rules from another bundle :: Rule = Can drink">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <bundle>mvn:org.drools.example/simple-kie-bundle/${project.version}</bundle>
         <bundle>mvn:org.drools.example/kie-project-bundle/${project.version}</bundle>
     </feature>
@@ -27,6 +30,7 @@
     <feature name="simple-decisiontable-rule" version="${drools.version}"
              description="Simple Drools OSGi Example using XLS DecisionTable :: Rule = Can drink &amp; Cheese">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <bundle>mvn:org.drools.example/simple-decisiontable/${project.version}</bundle>
     </feature>
@@ -34,6 +38,7 @@
     <feature name="fetch-external-resource" version="${drools.version}"
              description="Drools OSGi Example fetching resources externally">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <bundle>mvn:org.drools.example/fetch-external-resource/${project.version}</bundle>
     </feature>
@@ -49,6 +54,7 @@
     <!-- jBPMN OSGi Examples -->
     <feature name="simple-process" version="${drools.version}" description="jBPM OSGi Example :: Simple Process">
         <feature version="${drools.version}">jbpm</feature>
+        <feature version="${project.version}">lib</feature>
         <bundle>mvn:org.jbpm.example/simple-process/${project.version}</bundle>
     </feature>
 
@@ -91,6 +97,7 @@
     <!-- Simple Kie Example -->
     <feature name="simple-kie-ci" version="${drools.version}">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <feature version="${drools.version}">my-kie-ci</feature>
         <bundle>mvn:org.drools.example/simple-kie-ci/1.0.0-SNAPSHOT</bundle>
     </feature>
@@ -98,6 +105,7 @@
     <!-- Spring/Blueprint & Drools OSGI -->
     <feature name="drools-decisiontable-kie-spring-camel" version="${drools.version}" description="Drools Decision Table Kie Spring Camel Example">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <feature version="${drools.version}">kie-spring</feature>
         <feature version="${drools.version}">kie-camel</feature>
@@ -105,6 +113,7 @@
     </feature>
     <feature name="drools-decisiontable-kie-blueprint-camel" version="${drools.version}" description="Drools Decision Table Kie Blueprint Camel Example">
         <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
         <feature version="${drools.version}">drools-decisiontable</feature>
         <feature version="${drools.version}">kie-aries-blueprint</feature>
         <feature version="${drools.version}">kie-camel</feature>
@@ -114,6 +123,7 @@
     <!-- Spring jBPM OSGI -->
     <feature name="jbpm-example" version="${drools.version}" description="jBPM Spring Example">
         <feature version="${drools.version}">jbpm</feature>
+        <feature version="${project.version}">lib</feature>
         <bundle>mvn:org.drools.example/spring-jbpm/${project.version}</bundle>
     </feature>
 

@@ -11,26 +11,6 @@
   <bean id="droolsHelper" class="org.drools.camel.example.DroolsCommandHelper"/>
   <bean id="personHelper" class="org.drools.camel.example.PersonHelper"/>
 
-
-  <bean id="kiePostProcessor" class="org.drools.osgi.spring.OsgiKModuleBeanFactoryPostProcessor">
-    <!-- you can optionally define the GAV for this artifact as it follows -->
-    <!--property name="release" value="yourGroup:yourArtifact:yourVersion"/-->
-  </bean>
-
-  <kie:kmodule id="camel-context">
-
-    <kie:kbase name="drl_sample">
-      <kie:ksession name="ksession1" type="stateless">
-        <kie:batch>
-          <kie:set-global identifier="list" >
-            <bean class="java.util.ArrayList" />
-          </kie:set-global>
-        </kie:batch>
-      </kie:ksession>
-    </kie:kbase>
-
-  </kie:kmodule>
-
   <!-- Camel Route -->
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 

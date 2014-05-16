@@ -111,6 +111,6 @@ public class CamelContextXmlTest extends CamelSpringTestSupport {
 
     @Override
     protected ClassPathXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml","META-INF/spring/kie.xml");
     }
 }

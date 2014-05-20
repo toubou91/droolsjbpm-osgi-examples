@@ -294,6 +294,11 @@ ProcessInstance processInstance = ksession.startProcess("Evaluation", params);
 LOG.info("Stated completed");
 ----
 
+=== jBPM Process with JPA persistence - TODO
+
+    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:install jbpm-spring-persistent
+
 == Integration with Camel Example
 
 The Drools/jBPM has developed different kie modules that you can use to integrate this technology with Apache Camel to collect

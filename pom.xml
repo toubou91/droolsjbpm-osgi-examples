@@ -11,8 +11,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--        <drools.version>6.1.0.Beta3</drools.version>-->
+<!--        <drools.version>6.1.0.Beta3</drools.version> -->
         <drools.version>6.1.0-SNAPSHOT</drools.version>
+<!--        <drools.version>6.0.3-redhat-1</drools.version>-->
         <spring.version>3.1.4.RELEASE</spring.version>
         <camel.version>2.12.3</camel.version>
         <junit.version>4.11</junit.version>
@@ -113,6 +114,11 @@
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-runtime-manager</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-audit</artifactId>
                 <version>${drools.version}</version>
             </dependency>
 

@@ -1,19 +1,16 @@
-package org.jbpm.osgi.example;
+package org.jbpm.osgi.persistent.example;
 
+import java.util.AbstractSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jbpm.process.audit.AbstractAuditLogger;
+import org.jbpm.process.audit.AuditLoggerFactory;
 import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
-import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
-import org.kie.api.io.ResourceType;
+import org.kie.api.event.process.ProcessEventListener;
+import org.kie.api.runtime.Environment;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.manager.RuntimeEngine;
-import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.runtime.process.ProcessInstance;
-import org.kie.internal.io.ResourceFactory;
-import org.kie.api.runtime.manager.RuntimeEnvironment;
-import org.kie.api.runtime.manager.RuntimeManagerFactory;
-import org.kie.internal.runtime.manager.context.EmptyContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +19,7 @@ public class EvaluationProcessExample {
     private static final Logger logger = LoggerFactory.getLogger(EvaluationProcessExample.class);
 
     private KieSession ksession;
+    private Environment env;
 
     public static void main(String[] args) throws Exception {
         EvaluationProcessExample pr = new EvaluationProcessExample();
@@ -31,6 +29,12 @@ public class EvaluationProcessExample {
 
     public void init() throws Exception {
         logger.info("Loading EvaluationProcess.bpmn2");
+
+/*        LoggingProcessEventListener logEvents = new LoggingProcessEventListener();
+        ksession.addEventListener(logEvents);*/
+
+        AbstractAuditLogger auditLogger = AuditLoggerFactory.newJPAInstance(env);
+        ksession.addEventListener(auditLogger);
 
         logger.info("Register tasks");
         ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
@@ -54,5 +58,14 @@ public class EvaluationProcessExample {
     public void setKsession(KieSession ksession) {
         this.ksession = ksession;
     }
+
+    public Environment getEnv() {
+        return env;
+    }
+
+    public void setEnv(Environment env) {
+        this.env = env;
+    }
+
 
 }

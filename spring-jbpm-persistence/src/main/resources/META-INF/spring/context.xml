@@ -10,7 +10,9 @@
 
     <kie:kmodule id="kModule">
         <kie:kbase name="kPersistence">
-            <kie:ksession name="kSession">
+            <kie:ksession name="kSession" type="stateful">
+                <kie:processEventListener ref="log-listener"/>
+                <kie:processEventListener ref="mock-process-listener"/>
                 <kie:configuration>
                     <kie:jpa-persistence>
                         <kie:transaction-manager ref="txManager"/>
@@ -25,6 +27,16 @@
         <kie:entity-manager-factory ref="myEmf"/>
         <kie:transaction-manager ref="txManager"/>
     </kie:environment>
+
+    <bean id="mock-process-listener" class="org.jbpm.osgi.persistent.example.LoggingProcessEventListener"/>
+
+    <!-- Spring equivalent
+         AbstractAuditLogger auditLogger = AuditLoggerFactory.newJPAInstance(emf);
+     -->
+    <bean id="log-listener" class="org.jbpm.process.audit.AuditLoggerFactory"
+          factory-method="newJPAInstance">
+        <constructor-arg ref="env"/>
+    </bean>
 
     <bean id="jbpm-ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
@@ -44,9 +56,10 @@
 
     <bean id="kiePostProcessor" class="org.drools.osgi.spring.OsgiKModuleBeanFactoryPostProcessor"/>
 
-    <bean id="evaluationProcessExample" class="org.jbpm.osgi.example.EvaluationProcessExample"
+    <bean id="evaluationProcessExample" class="org.jbpm.osgi.persistent.example.EvaluationProcessExample"
           init-method="init" destroy-method="destroy">
         <property name="ksession" ref="kSession"/>
-     </bean>
+        <property name="env" ref="env"/>
+    </bean>
 
 </beans>

@@ -266,7 +266,7 @@ which will install the bundles required (jbpm, Human-task, ...) and finally the 
 
 The process is simple and start by logging information that process has been initiated before to diverge, register a request and finally converge at the end
 
-c
+image:documentation/images/evaluation-process.png[]
 
 To configure the runtime manage with the bpmn process file, you should add assets using a `ResourceFactory.newClassPathResource` with the package name containing it
 

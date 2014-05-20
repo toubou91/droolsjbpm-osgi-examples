@@ -1,10 +1,7 @@
-jBPM Persistence Example
-========================
+== jBPM Persistence Example
 
 This example deploys as a bundle a jBPM process (? display image) which is called when Spring instantiates
 the bean "EvaluationProcessExample". The process contains a task ("RegisterTask" )and a user task ("Human Task").
-
-??
 
 To build this project use
 
@@ -21,18 +18,12 @@ Start JBoss Fuse or Apache Karaf
 
 In the console, use the following commands
 
-    features:addurl mvn:org.drools/drools-karaf-features/6.1.0.Beta3/xml/features
-    features:install spring
-    features:install spring-dm
-    features:install spring-tx
-    features:install drools-jpa
-    features:install jbpm-human-task
-    features:install kie-spring
-    features:install jbpm-example
+    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:install -c jbpm-spring-persistent
 
 To see the results tail the Fuse ESB log
 
-    tail -f <Fuse ESB Home> or <Karaf Home>/data/log/fuseesb.log
+    tail -f <JBoss Fuse Home>/data/log/fuse.log or <Karaf Home>/data/log/karaf.log
 
     Processing evaluation for employee UserId-12345
     Executing work item WorkItem 1 [name=Human Task, state=0, processInstanceId=1, parameters{NodeName=Two}]

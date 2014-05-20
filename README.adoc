@@ -15,9 +15,12 @@ or community releases
 
 == Download and compile the project
 
-- In a Dos/Unix terminal, clone this git project
+- In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
+  git checkout v6.1.0.Beta3
+  
+or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 
 - Move to that directory
 

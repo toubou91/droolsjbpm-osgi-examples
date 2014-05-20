@@ -11,14 +11,16 @@
     <kie:kmodule id="kModule">
         <kie:kbase name="kPersistence">
             <kie:ksession name="kSession" type="stateful">
-                <kie:processEventListener ref="log-listener"/>
-                <kie:processEventListener ref="mock-process-listener"/>
-                <kie:configuration>
-                    <kie:jpa-persistence>
-                        <kie:transaction-manager ref="txManager"/>
-                        <kie:entity-manager-factory ref="myEmf"/>
-                    </kie:jpa-persistence>
-                </kie:configuration>
+            <!--     DOES NOT WORK ON KARAF
+            <kie:processEventListener ref="log-listener"/>
+            <kie:processEventListener ref="mock-process-listener"/>
+            -->
+            <kie:configuration>
+                <kie:jpa-persistence>
+                    <kie:transaction-manager ref="txManager"/>
+                    <kie:entity-manager-factory ref="myEmf"/>
+                </kie:jpa-persistence>
+            </kie:configuration>
             </kie:ksession>
         </kie:kbase>
     </kie:kmodule>
@@ -28,7 +30,15 @@
         <kie:transaction-manager ref="txManager"/>
     </kie:environment>
 
-    <bean id="mock-process-listener" class="org.jbpm.osgi.persistent.example.LoggingProcessEventListener"/>
+<!--  DOES NOT WORK ON KARAF
+     <kie:eventListeners id="debugListeners">
+        <kie:processEventListener ref="log-process-listener"/>
+        <kie:agendaEventListener/>
+        <kie:ruleRuntimeEventListener/>
+    </kie:eventListeners>
+    -->
+
+    <bean id="log-process-listener" class="org.jbpm.osgi.persistent.example.LoggingProcessEventListener"/>
 
     <!-- Spring equivalent
          AbstractAuditLogger auditLogger = AuditLoggerFactory.newJPAInstance(emf);

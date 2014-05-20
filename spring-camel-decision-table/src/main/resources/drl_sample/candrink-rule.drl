@@ -16,9 +16,10 @@
 
 package org.drools.camel.example;
 
-import org.drools.camel.example.Person;
+import org.drools.camel.example.Person
 
 rule "CanDrink"
+
 when
     p : Person( age >= 21 )
 then

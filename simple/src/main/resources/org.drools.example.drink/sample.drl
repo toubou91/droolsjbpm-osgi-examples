@@ -1,6 +1,6 @@
 package org.drools.example.drink;
 
-import org.drools.example.model.Person;
+import org.drools.example.model.Person
 
 rule "CanDrink"
 when

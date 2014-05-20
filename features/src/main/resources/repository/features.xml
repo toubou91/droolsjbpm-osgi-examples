@@ -19,6 +19,13 @@
         <bundle>mvn:org.drools.example/simple/${project.version}</bundle>
     </feature>
 
+    <feature name="simple-rule-inject-ds" version="${drools.version}"
+             description="Simple Drools OSGi Example :: Rule = Can drink">
+        <feature version="${drools.version}">drools-module</feature>
+        <feature version="${project.version}">lib</feature>
+        <bundle>mvn:org.drools.example/simple-injection-ds/${project.version}</bundle>
+    </feature>
+
     <feature name="simple-import-rule" version="${drools.version}"
              description="Simple Drools OSGi Example importing rules from another bundle :: Rule = Can drink">
         <feature version="${drools.version}">drools-module</feature>

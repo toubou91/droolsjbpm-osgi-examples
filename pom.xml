@@ -19,10 +19,13 @@
         <junit.version>4.11</junit.version>
         <h2.version>1.4.178</h2.version>
         <hibernate.version>4.2.0.SP1</hibernate.version>
+        <felix.scr.version>1.8.0</felix.scr.version>
+        <osgi.core.version>4.3.1</osgi.core.version>
 
         <!-- plugins -->
         <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
         <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+        <maven.scr.plugin.version>1.9.0</maven.scr.plugin.version>
         <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
     </properties>
 
@@ -287,6 +290,7 @@
 
         <!-- Drools Kie & Activator -->
         <module>simple</module>
+        <module>simple-injection-ds</module>
         <module>simple-decisiontable</module>
         <module>simple-external-resource</module>
         <module>simple-kie-ci</module>

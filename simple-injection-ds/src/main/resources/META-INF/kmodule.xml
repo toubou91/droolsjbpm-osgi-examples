@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+
+    <kbase name="sampleKBase" packages="org.drools.example.drink" default="true">
+        <ksession name="sampleKSession" default="true" />
+    </kbase>
+
+</kmodule>

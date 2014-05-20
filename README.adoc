@@ -263,7 +263,8 @@ name ("org.osgi.framework.BundleActivator").
 By adding the following annotations to the class, the service will be retrieved when the bundle will be started and the methods (start/deactivate) called by the DS container
 when the proxy object will be created with the classloader of the bundle.
 
-
+[source, java]
+----
     @Component(name = "org.osgi.framework.BundleActivator")
     public class CanDrinkRuleOsgiDeclarativeService {
 
@@ -276,7 +277,7 @@ when the proxy object will be created with the classloader of the bundle.
         public void stop(final BundleContext bc) throws Exception { ... }
 
     }
-
+----
 
 Like the simple rule example the project can be deployed with the help of the features provisioning mechanism.
 

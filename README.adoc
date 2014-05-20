@@ -330,15 +330,15 @@ camel routes definition will be started and the camel timer component will fire 
 One camel route is used by Drools and the other by Drools DecisionTable.
 
 The object created (= fact) is inserted into the KieSession used by Drools and when this is done the rules will be fired automatically.
-To play with the project, use the following `features:install` command to deploy the bundles on JBoss Fuse.
+To play with the project, use the following *features:install* command to deploy the bundles on JBoss Fuse.
 
-features:install drools-decisiontable-kie-spring-camel
+    features:install drools-decisiontable-kie-spring-camel
 
 === Kie Blueprint with Camel & Drools
 
-Same example as described before but instead of Spring Dynamic Module priject, we will setup the project using the http://www.ibm.com/developerworks/library/os-osgiblueprint/[OSGI Blueprint container]
+Same example as described before but instead of Spring Dynamic Module project, we will setup the project using the http://www.ibm.com/developerworks/library/os-osgiblueprint/[OSGI Blueprint container]
 to instantiate the beans required to start the CamelContext containing the camel routes like also the beans handling the business logic (PersonHelper, CheeseHelper, ...).
 
-features:install drools-decisiontable-kie-blueprint-camel
+    features:install drools-decisiontable-kie-blueprint-camel
 
 Enjoy it !

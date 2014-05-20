@@ -255,6 +255,34 @@ For later update of the XLS file, the bundle used for this example must be resta
 
     osgi:restart ID_OF_THE_BUNDLE
 
+=== Simple rule using Declarative Service
+
+Instead of implementing the BundleActivator interface in our code, the service required to call the events (start/stop) of the bundle (managed by the OSGI container)
+can be managed using http://wiki.osgi.org/wiki/Declarative_Services[OSGI Declarative Service]. The DS will take care to retrieve from the OSGI Registry the interface exposed with this
+name ("org.osgi.framework.BundleActivator").
+By adding the following annotations to the class, the service will be retrieved when the bundle will be started and the methods (start/deactivate) called by the DS container
+when the proxy object will be created with the classloader of the bundle.
+
+
+    @Component(name = "org.osgi.framework.BundleActivator")
+    public class CanDrinkRuleOsgiDeclarativeService {
+
+        private KieSession ksession;
+
+        @Activate
+        public void start(final BundleContext bc) throws Exception { ...}
+
+        @Deactivate
+        public void stop(final BundleContext bc) throws Exception { ... }
+
+    }
+
+
+Like the simple rule example the project can be deployed with the help of the features provisioning mechanism.
+
+    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:install simple-rule-inject-ds
+
 == jBPM OSGi Example
 
 === Simple Process

@@ -30,12 +30,6 @@ public class EvaluationProcessExample {
     public void init() throws Exception {
         logger.info("Loading EvaluationProcess.bpmn2");
 
-/*        LoggingProcessEventListener logEvents = new LoggingProcessEventListener();
-        ksession.addEventListener(logEvents);*/
-
-        AbstractAuditLogger auditLogger = AuditLoggerFactory.newJPAInstance(env);
-        ksession.addEventListener(auditLogger);
-
         logger.info("Register tasks");
         ksession.getWorkItemManager().registerWorkItemHandler("Human Task", new SystemOutWorkItemHandler());
         ksession.getWorkItemManager().registerWorkItemHandler("RegisterRequest", new SystemOutWorkItemHandler());

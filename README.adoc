@@ -284,6 +284,82 @@ Like the simple rule example the project can be deployed with the help of the fe
     features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
     features:install simple-rule-inject-ds
 
+=== Simple rule using CDI & Weld
+
+BundleActivator like also Spring Dynamic Module, Blueprint and Declarative Service are great and interesting technologies to start/stop your bundle
+,inject the services or design your bundle as a component but they use http://en.wikipedia.org/wiki/OSGi[OSGI] that maybe your are not familiar with as
+a Java or JavaEE developer. In this case, you can also turn on your project into a CDI Beans project and use http://weld.cdi-spec.org/[Context & Dependency Injection]
+to manage the lifecycle of your bundle and inject the *KieSession* created based on your *Kmodule.xml* using annotations.
+
+To use Weld 2.x and CDI 1.1, it is required to add this https://ops4j1.jira.com/wiki/display/PAXCDI/Requirements+and+Capabilities[OSGI requirement capability] to your bundle as this
+property will be used by the OSGI Container to *register* your bundle to the CDI Service managed by https://ops4j1.jira.com/wiki/display/PAXCDI/Pax+CDI[OPS4J Pax CDI] which implement
+the specification http://blog.osgi.org/2012/05/osgicdi-integration-rfp-available-for.html[OSGI CDI].
+
+[source, xml]
+----
+<Require-Capability>
+    osgi.extender; filter:="(osgi.extender=pax.cdi)"
+</Require-Capability>
+----
+
+The java class looks like any CDI Bean class where a scope has been defined (@ApplicationScope) and dependencies injected
+*@Inject @Kession* to retrive from the CDI Context, the object KSession created based on Kmodule.xml definition. The trick to link
+the lifecycle of the bundle (start/stop events) with the OSGI CDI Service is to use the *@Observes* http://docs.jboss.org/cdi/spec/1.0/html/events.html#observermethods[annotation]
+and the *ContainerInitialized event*.
+
+[source, java]
+----
+import org.kie.api.cdi.KSession;
+import org.ops4j.pax.cdi.api.ContainerInitialized;
+
+import javax.annotation.PreDestroy;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+
+@ApplicationScoped
+public class CanDrinkRuleOsgiCdiWeld {
+
+    @Inject
+    @KSession("sampleKSession")
+    private KieSession ksession;
+
+    public void onStartup(@Observes ContainerInitialized event) {
+
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kcont = ks.newKieClasspathContainer(getClass().getClassLoader());
+        KieBase kbase = kcont.getKieBase("sampleKBase");
+
+        this.ksession = kbase.newKieSession();
+        System.out.println("KieSession created.");
+
+        for (int i = 0; i < 20; i++) {
+            // Create a Person
+            Person aPerson = PersonHelper.createPerson();
+            ksession.insert(aPerson);
+
+            // Fire the rules
+            ksession.fireAllRules();
+
+            // Check if it can drink
+            PersonHelper.canDrink(aPerson);
+        }
+    }
+
+    @PreDestroy
+    public void onClose() {
+        if (this.ksession != null) {
+            this.ksession.dispose();
+            System.out.println("KieSession disposed.");
+        }
+    }
+----
+
+To deploy this project on JBoss Fuse, use this feature command which will deploy your drools cdi bundle but also the Weld 1.1 container
+, the OSGI CDI service managing the lifecyle of the CDI Container when the bundle start/stop
+
+    features:install simple-cdi
+
 == jBPM OSGi Example
 
 === Simple Process
@@ -376,3 +452,64 @@ to instantiate the beans required to start the CamelContext containing the camel
     features:install drools-decisiontable-kie-blueprint-camel
 
 Enjoy it !
+
+=== Shortcut to play with the different scenario
+
+To play with the different examples and redeploy the bundles in JBoss Fuse every time, follow these steps
+
+- Start Karaf with clean option to remove previously installed bundles and start the server with the features defined by default under the file
+etc/org.apache.karaf.features.cfg (see feeturesBoot variable)
+
+  ./karaf clean
+
+- Install the features repo and the corresponding features
+
+1. Drools project (kie + rules) started using BundleActivator
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-rule
+
+2. Drools project (kie + rules) started using OSGI Declarative Service
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-rule-inject-ds
+
+3. Drools project (kie + rules) started using CDI and Weld
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-cdi
+
+4. Idem as scenario 1. but rules are packaged in a separate jar/bundle
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-import-rule
+
+5. Drools Decision Table (kie + rules defined in a spreadsheet) started using BundleActivator
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-decisiontable-rule
+
+6. Drools Decision Table (kie + rules defined in a spreadsheet ) started using BundleActivator
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install fetch-external-resource
+
+7. jBPM process
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install simple-process
+
+8. jBPM process using persistence & JPA
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install jbpm-spring-persistent
+
+9. Spring project (Kie Spring) starting Camel Routes firing Drools rules
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install drools-decisiontable-kie-spring-camel
+
+10. Aries Blueprint project (Kie Aries Blueprint) starting Camel Routes firing Drools rules
+
+  features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install drools-decisiontable-kie-blueprint-camel

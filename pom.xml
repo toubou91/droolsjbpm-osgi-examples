@@ -15,14 +15,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jboss.fuse.bom</groupId>
-                <artifactId>jboss-fuse-parent</artifactId>
-                <version>${jboss.fuse.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- Following deps are not defined in the BOM
                  Should be verified with next JBoss Fuse release
                  -->
@@ -276,9 +268,6 @@
     <profiles>
         <profile>
             <id>community</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <!-- Community -->
                 <!--        <drools.version>6.1.0.Beta3</drools.version> -->
@@ -294,6 +283,55 @@
                 <hibernate.version>4.2.0.SP1</hibernate.version>
                 <javaee-api.version>6.0</javaee-api.version>
             </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <drools.version>6.0.3-redhat-1</drools.version>
+                <h2.version>1.4.178</h2.version>
+                <spring.version>3.0.7.RELEASE</spring.version>
+                <hibernate.version>4.2.0.SP1</hibernate.version>
+                <felix.scr.version>1.8.0</felix.scr.version>
+                <pax.cdi.version>0.6.0</pax.cdi.version>
+                <osgi.core.version>4.3.1</osgi.core.version>
+                <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
+                <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
+            </properties>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.ip.component.management</groupId>
+                        <artifactId>ip-dependency-management-all</artifactId>
+                        <version>1.2-redhat-10</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.component.management</groupId>
+                        <artifactId>jboss-dependency-management-all</artifactId>
+                        <version>6.1.1.Final-redhat-61</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.fuse.bom</groupId>
+                        <artifactId>jboss-fuse-parent</artifactId>
+                        <version>6.1.0.redhat-379</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
+            <repositories>
+                <repository>
+                    <id>internal-repo</id>
+                    <name>JBoss Private Repo</name>
+                    <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6-build/latest/maven/</url>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
 

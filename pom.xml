@@ -295,28 +295,6 @@
                 <javaee-api.version>6.0</javaee-api.version>
             </properties>
         </profile>
-        <profile>
-            <id>release</id>
-            <properties>
-                <drools.version>6.0.3-redhat-1</drools.version>
-                <spring.version>3.1.4.RELEASE</spring.version>
-                <camel.version>2.12.3</camel.version>
-                <junit.version>4.11</junit.version>
-                <h2.version>1.4.178</h2.version>
-                <hibernate.version>4.2.0.SP1</hibernate.version>
-                <felix.scr.version>1.8.0</felix.scr.version>
-                <osgi.core.version>4.3.1</osgi.core.version>
-                <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
-                <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
-            </properties>
-            <repositories>
-                <repository>
-                    <id>internal-repo</id>
-                    <name>JBoss Private Repo</name>
-                    <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6-build/latest/maven/</url>
-                </repository>
-            </repositories>
-        </profile>
     </profiles>
 
 </project>

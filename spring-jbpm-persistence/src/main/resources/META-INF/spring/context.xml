@@ -6,8 +6,6 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd">
 
-    <kie:kstore id="kStore"/>
-
     <kie:kmodule id="kModule">
         <kie:kbase name="kPersistence">
             <kie:ksession name="kSession" type="stateful">

@@ -576,7 +576,7 @@ to instantiate the beans required to start the CamelContext containing the camel
 
 Enjoy it !
 
-=== Shortcut to play with the different scenario
+== Shortcut to play with the different scenario
 
 To play with the different examples and redeploy the bundles in JBoss Fuse every time, follow these steps
 

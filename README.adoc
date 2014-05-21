@@ -286,8 +286,7 @@ Like the simple rule example the project can be deployed with the help of the fe
 
 === Simple rule using CDI & Weld
 
-BundleActivator like also Spring Dynamic Module, Blueprint and Declarative Service are great and interesting technologies to start/stop your bundle
-,inject the services or design your bundle as a component but they use http://en.wikipedia.org/wiki/OSGi[OSGI] that maybe your are not familiar with as
+BundleActivator like also Spring Dynamic Module, Blueprint and Declarative Service are great and interesting technologies to start/stop your bundle, inject the services or design your bundle as a component but they use http://en.wikipedia.org/wiki/OSGi[OSGI] that maybe your are not familiar with as
 a Java or JavaEE developer. In this case, you can also turn on your project into a CDI Beans project and use http://weld.cdi-spec.org/[Context & Dependency Injection]
 to manage the lifecycle of your bundle and inject the *KieSession* created based on your *Kmodule.xml* using annotations.
 
@@ -303,7 +302,7 @@ the specification http://blog.osgi.org/2012/05/osgicdi-integration-rfp-available
 ----
 
 The java class looks like any CDI Bean class where a scope has been defined (@ApplicationScope) and dependencies injected
-*@Inject @Kession* to retrive from the CDI Context, the object KSession created based on Kmodule.xml definition. The trick to link
+*@Inject @Kession* to retrieve from the CDI Context, the object KSession created based on Kmodule.xml definition. The trick to link
 the lifecycle of the bundle (start/stop events) with the OSGI CDI Service is to use the *@Observes* http://docs.jboss.org/cdi/spec/1.0/html/events.html#observermethods[annotation]
 and the *ContainerInitialized event*.
 
@@ -355,7 +354,7 @@ public class CanDrinkRuleOsgiCdiWeld {
     }
 ----
 
-To deploy this project on JBoss Fuse, use this feature command which will deploy your drools cdi bundle but also the Weld 1.1 container
+To deploy this project on JBoss Fuse, use this feature command which will deploy your drools cdi bundle but also the Weld CDI 1.1 container
 , the OSGI CDI service managing the lifecyle of the CDI Container when the bundle start/stop
 
     features:install simple-cdi

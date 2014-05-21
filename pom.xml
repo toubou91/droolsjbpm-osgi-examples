@@ -11,33 +11,26 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--        <drools.version>6.1.0.Beta3</drools.version> -->
-        <drools.version>6.1.0-SNAPSHOT</drools.version>
-<!--        <drools.version>6.0.3-redhat-1</drools.version>-->
-        <spring.version>3.1.4.RELEASE</spring.version>
-        <camel.version>2.12.3</camel.version>
-        <junit.version>4.11</junit.version>
-        <h2.version>1.4.178</h2.version>
-        <hibernate.version>4.2.0.SP1</hibernate.version>
-        <felix.scr.version>1.8.0</felix.scr.version>
-        <osgi.core.version>4.3.1</osgi.core.version>
-        <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
-        <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
-        <pax.cdi.version>0.6.0</pax.cdi.version>
-
-        <!-- plugins -->
-        <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
-        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
-        <maven.scr.plugin.version>1.9.0</maven.scr.plugin.version>
-        <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.jboss.fuse.bom</groupId>
+                <artifactId>jboss-fuse-parent</artifactId>
+                <version>${jboss.fuse.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Following deps are not defined in the BOM
+                 Should be verified with next JBoss Fuse release
+                 -->
+            <!-- Java EE -->
+            <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
-                <version>6.0</version>
+                <version>${javaee-api.version}</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -61,6 +54,21 @@
                 <groupId>org.kie</groupId>
                 <artifactId>kie-camel</artifactId>
                 <version>${drools.version}</version>
+                <!-- Added exclussion as Kie, Drools projects use a different versin of Spring -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-asm</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
@@ -71,6 +79,21 @@
                 <groupId>org.kie</groupId>
                 <artifactId>kie-spring</artifactId>
                 <version>${drools.version}</version>
+                <!-- Added exclussion as Kie, Drools projects use a different versin of Spring -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-asm</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Drools -->
@@ -128,37 +151,15 @@
                 <version>${drools.version}</version>
             </dependency>
 
-            <!-- Camel -->
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-blueprint</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-spring</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
+                <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
+                <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -169,11 +170,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
 
@@ -187,14 +183,6 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency>
-
-            <!-- OSGI -->
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
-                <version>5.0.0</version>
-                <scope>provided</scope>
             </dependency>
 
             <!-- CDI -->
@@ -214,37 +202,11 @@
                 <version>${pax.cdi.version}</version>
             </dependency>
 
-            <!-- Logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.5</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>1.0.11</version>
-            </dependency>
-
-            <!-- Testing -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test-spring</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
+            <!-- Test -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
+                <scope>test</scope>
                 <version>${spring.version}</version>
             </dependency>
 
@@ -256,33 +218,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>${maven-bundle-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>camel-maven-plugin</artifactId>
-                    <version>${camel.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
     <repositories>
         <repository>
@@ -298,6 +233,11 @@
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-releases</id>
+            <name>JBoss.org Fuse Releases</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/fs-releases</url>
         </repository>
     </repositories>
 
@@ -331,7 +271,52 @@
         <module>simple-process</module>
         <module>spring-jbpm</module>
         <module>spring-jbpm-persistence</module>
-
     </modules>
+
+    <profiles>
+        <profile>
+            <id>community</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Community -->
+                <!--        <drools.version>6.1.0.Beta3</drools.version> -->
+                <drools.version>6.1.0-SNAPSHOT</drools.version>
+                <jboss.fuse.bom.version>6.1.0.redhat-379</jboss.fuse.bom.version>
+
+                <!-- Versions defined in the BOM for missing artefacts -->
+                <spring.version>3.2.8.RELEASE</spring.version>
+                <h2.version>1.4.178</h2.version>
+                <pax.cdi.version>0.6.0</pax.cdi.version>
+                <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
+                <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
+                <hibernate.version>4.2.0.SP1</hibernate.version>
+                <javaee-api.version>6.0</javaee-api.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <drools.version>6.0.3-redhat-1</drools.version>
+                <spring.version>3.1.4.RELEASE</spring.version>
+                <camel.version>2.12.3</camel.version>
+                <junit.version>4.11</junit.version>
+                <h2.version>1.4.178</h2.version>
+                <hibernate.version>4.2.0.SP1</hibernate.version>
+                <felix.scr.version>1.8.0</felix.scr.version>
+                <osgi.core.version>4.3.1</osgi.core.version>
+                <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
+                <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
+            </properties>
+            <repositories>
+                <repository>
+                    <id>internal-repo</id>
+                    <name>JBoss Private Repo</name>
+                    <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6-build/latest/maven/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 
 </project>

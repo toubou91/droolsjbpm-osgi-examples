@@ -1,18 +1,14 @@
 package org.jbpm.osgi.persistent.example;
 
-import java.util.AbstractSet;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.jbpm.process.audit.AbstractAuditLogger;
-import org.jbpm.process.audit.AuditLoggerFactory;
 import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
-import org.kie.api.event.process.ProcessEventListener;
 import org.kie.api.runtime.Environment;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.process.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EvaluationProcessExample {
 

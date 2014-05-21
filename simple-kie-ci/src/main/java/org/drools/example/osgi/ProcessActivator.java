@@ -8,8 +8,6 @@ import org.kie.api.runtime.KieSession;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import java.util.NoSuchElementException;
-
 public class ProcessActivator implements BundleActivator {
 
     private KieScanner kScanner;

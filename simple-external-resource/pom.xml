@@ -89,7 +89,6 @@
                             org.kie.internal.runtime.manager.context;version="[6.0,7)",
                             org.kie.internal;version="[6.0,7)",
                             org.eclipse.jdt.internal.compiler,
-                            org.osgi.framework.wiring,
                             org.osgi.framework
                         </Import-Package>
                         <Export-Package>

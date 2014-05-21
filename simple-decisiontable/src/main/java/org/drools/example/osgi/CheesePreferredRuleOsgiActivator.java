@@ -3,7 +3,6 @@ package org.drools.example.osgi;
 import org.drools.example.model.Cheese;
 import org.drools.example.rule.EntityHelper;
 import org.kie.api.KieBase;
-import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;

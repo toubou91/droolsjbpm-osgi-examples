@@ -73,7 +73,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Import-Package>
                             javax.enterprise.*,
-                            org.slf4j,
+                            org.slf4j;version="[1.6,2)",
                             org.drools.core;version="[6.0,7)",
                             org.drools.core.base;version="[6.0,7)",
                             org.drools.core.base.accumulators;version="[6.0,7)",
@@ -102,7 +102,6 @@
                             org.kie.internal;version="[6.0,7)",
                             org.eclipse.jdt.internal.compiler,
                             org.ops4j.pax.cdi.api,
-                            org.osgi.framework.wiring,
                             org.osgi.framework
                         </Import-Package>
                         <Require-Capability>

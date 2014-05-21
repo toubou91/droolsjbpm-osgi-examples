@@ -3,14 +3,11 @@ package org.drools.example.osgi;
 import org.drools.example.model.Person;
 import org.drools.example.rule.PersonHelper;
 import org.kie.api.KieBase;
-import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.wiring.BundleWiring;
 
 public class CanDrinkRuleOsgiActivator implements BundleActivator {
 

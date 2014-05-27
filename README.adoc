@@ -2,23 +2,19 @@
 :data-uri:
 :toc:
 
-== Drools & jBPM examples for OSGi platforms (JBoss Fuse, Karaf, Fabric8)
+== Drools & jBPM examples for OSGi platforms (JBoss Fuse)
 
 toc::[]
 
 This project contains Drools & jBPM OSGi examples that you can deploy on :
-supported release
-- https://www.jboss.org/products/fuse.html[RedHat JBoss Fuse 6.1]
-or community releases
-- http://karaf.apache.org[Apache Karaf]
-- http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
+RedHat supported release : https://www.jboss.org/products/fuse.html[RedHat JBoss Fuse 6.1]
 
 == Download and compile the project
 
 - In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
-  git checkout 6.1.0.Beta4
+  git checkout RH.6.0.2.ER3
   
 or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 
@@ -39,20 +35,23 @@ or download the release available here : https://github.com/cmoulliard/droolsjbp
 
   cd ~/temp/jboss-fuse-6.1.0.redhat-379/bin
 
-- Start Fuse console
+- Add the RedHat Maven Repo containing latest BRMS & BPMS builds (6.0.2.ER3, ...) to the config file
+  containing the maven repositories that we scan when we deploy the bundles on JBoss Fuse
+
+  vi etc/org.ops4j.pax.url.mvn.cfg
+  # Append this line to the list of the repos
+
+  org.ops4j.pax.url.mvn.repositories= \
+      ..., \
+      http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6-build/latest/maven/
+
+- Start the Fuse console
 
   ./fuse
-  
-== Download and deploy on Apache Karaf/Fabric8
-
-Procedure is exactly the same excepted that you should download *Apache Karaf* or *Fabric8* releases
-
-- http://karaf.apache.org/index/community/download.html[Karaf 2.3.5]
-- http://fabric8.io/#/site/book/doc/index.md?chapter=getStarted_md[fabric8-karaf-1.1.0.Beta5 or more]
 
 == Add Repositories of the modules
 
-In the JBoss Fuse/Karaf console, add the url pointing to the file containing the description of the Drools/jBPM OSGI modules
+In the JBoss Fuse console, add the url pointing to the file containing the description of the Drools/jBPM OSGI modules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
 
@@ -121,7 +120,7 @@ to verify if they can Drink according to their age.
     Person Old Person aged of 21 , can go to the Bar
     Person Young Person aged of 18, can't go to the Bar
 
-Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of Karaf
+Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of jboss fuse
 
     KieSession disposed
 
@@ -200,10 +199,10 @@ public void start(final BundleContext bc) throws Exception {
 }
 ----
 
-To deploy this module on the container, use this Karaf command which will install `decision-table` module and the example.
-When the bundle will be started, this information will appear in the Karaf Console
+To deploy this module on the container, use this fuse command which will install `decision-table` module and the example.
+When the bundle will be started, this information will appear in the fuse Console
 
-    karaf@root> features:install simple-decisiontable-rule
+    JBossFuse@root> features:install simple-decisiontable-rule
     KieSession created.
     Cheese Stilton costs 10 EUR.
     Cheese Cheddar costs 50 EUR.
@@ -231,7 +230,7 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
     private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 ----
 
-to point to your XLS file on the file system, before to build the project and deploy on it Karaf, JBoss Fuse.
+to point to your XLS file on the file system, before to build the project and deploy on it JBoss Fuse.
 
 Project can be deployed using the following Karaf command :
 
@@ -363,7 +362,7 @@ To deploy this project on JBoss Fuse, use this feature command which will deploy
 
 === Simple Process
 
-jbpmn process is also supported and can be deployed too on Karaf, JBoss Fuse container. Like the Drools Simple Rule Example, you should install a feature
+jbpmn process is also supported and can be deployed too on JBoss Fuse container. Like the Drools Simple Rule Example, you should install a feature
 which will install the bundles required (jbpm, Human-task, ...) and finally the example
 
     features:install simple-process
@@ -580,10 +579,19 @@ Enjoy it !
 
 To play with the different examples and redeploy the bundles in JBoss Fuse every time, follow these steps
 
-- Start Karaf with clean option to remove previously installed bundles and start the server with the features defined by default under the file
-etc/org.apache.karaf.features.cfg (see feeturesBoot variable)
+- Start Fuse with the clean option to remove previously installed bundles and start the server with the features defined by default under the file
+etc/org.apache.karaf.features.cfg (see featuresBoot variable)
 
-  ./karaf clean
+  ./fuse clean
+
+- Add the RedHat Maven Repo containing latest BRMS & BPMS builds (6.0.2.ER3, ...)
+
+  vi etc/org.ops4j.pax.url.mvn.cfg
+  # Append this line to the list of the repos
+
+  org.ops4j.pax.url.mvn.repositories= \
+      ..., \
+      http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6-build/latest/maven/
 
 - Install the features repo and the corresponding features
 

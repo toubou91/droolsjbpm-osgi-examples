@@ -267,30 +267,13 @@
 
     <profiles>
         <profile>
-            <id>community</id>
-            <properties>
-                <!-- Community -->
-                <!--        <drools.version>6.1.0.Beta3</drools.version> -->
-                <drools.version>6.1.0-SNAPSHOT</drools.version>
-                <jboss.fuse.bom.version>6.1.0.redhat-379</jboss.fuse.bom.version>
-
-                <!-- Versions defined in the BOM for missing artefacts -->
-                <spring.version>3.2.8.RELEASE</spring.version>
-                <h2.version>1.4.178</h2.version>
-                <pax.cdi.version>0.6.0</pax.cdi.version>
-                <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
-                <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
-                <hibernate.version>4.2.0.SP1</hibernate.version>
-                <javaee-api.version>6.0</javaee-api.version>
-            </properties>
-        </profile>
-        <profile>
             <id>release</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <drools.version>6.0.3-redhat-1</drools.version>
+                <!-- Correspond to version 6.0.2.ER3 -->
+                <drools.version>6.0.3-redhat-2</drools.version>
                 <h2.version>1.4.178</h2.version>
                 <spring.version>3.0.7.RELEASE</spring.version>
                 <hibernate.version>4.2.0.SP1</hibernate.version>

@@ -18,7 +18,7 @@ or community releases
 - In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
-  git checkout 6.1.0.Beta4
+  git checkout 6.1.0.CR1
   
 or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 
@@ -48,7 +48,7 @@ or download the release available here : https://github.com/cmoulliard/droolsjbp
 Procedure is exactly the same excepted that you should download *Apache Karaf* or *Fabric8* releases
 
 - http://karaf.apache.org/index/community/download.html[Karaf 2.3.5]
-- http://fabric8.io/#/site/book/doc/index.md?chapter=getStarted_md[fabric8-karaf-1.1.0.Beta5 or more]
+- http://fabric8.io/#/site/book/doc/index.md?chapter=getStarted_md[fabric8-karaf-1.1.0.CR1 or more]
 
 == Add Repositories of the modules
 

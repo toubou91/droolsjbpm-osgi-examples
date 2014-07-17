@@ -284,9 +284,9 @@
                 <!--
                 <drools.version>6.1.0.Beta4</drools.version>
                 <drools.version>6.0.3-SNAPSHOT</drools.version>
-                <drools.version>6.1.0-SNAPSHOT</drools.version>
                 -->
-                <drools.version>6.1.0.CR1</drools.version>
+                <drools.version>6.2.0-SNAPSHOT</drools.version>
+<!--              <drools.version>6.1.0.CR1</drools.version>-->
                 <jboss.fuse.bom.version>6.1.0.redhat-379</jboss.fuse.bom.version>
 
                 <!-- Versions defined in the BOM for missing artefacts -->

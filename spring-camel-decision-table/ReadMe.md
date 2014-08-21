@@ -9,7 +9,11 @@ This project includes a unit test, org.drools.camel.example.CamelContextXmlTest,
 
 To run this project use
 
-    mvn camel:run
+    mvn camel:run -Psimple 
+    
+    or 
+    
+    mvn camel:run -Pdecision-table
 
 To deploy this project into :
 

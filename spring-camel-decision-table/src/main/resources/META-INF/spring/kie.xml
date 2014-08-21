@@ -3,13 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:kie="http://drools.org/schema/kie-spring"
        xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd">
+       http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://drools.org/schema/kie-spring
+         http://drools.org/schema/kie-spring.xsd">
 
-    <bean id="kiePostProcessor" class="org.drools.osgi.spring.OsgiKModuleBeanFactoryPostProcessor">
-        <!-- you can optionally define the GAV for this artifact as it follows -->
-        <!--property name="release" value="yourGroup:yourArtifact:yourVersion"/-->
-    </bean>
+    <bean id="kiePostProcessor" class="org.drools.osgi.spring.OsgiKModuleBeanFactoryPostProcessor"/>
 
     <kie:kmodule id="camel-context">
         <kie:kbase name="drl_sample">

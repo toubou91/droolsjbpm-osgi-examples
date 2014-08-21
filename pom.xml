@@ -274,7 +274,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <brms.version>6.0.3-redhat-5</brms.version>
+                <brms.version>6.0.3-redhat-4</brms.version>
                 <h2.version>1.4.178</h2.version>
                 <!--<spring.version>3.0.7.RELEASE</spring.version>-->
                 <!-- We will use same version as defined in JBoss Fuse for Camel -->

@@ -18,7 +18,7 @@ Start JBoss Fuse or Apache Karaf
 
 In the console, use the following commands
 
-    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:addurl mvn:org.drools.example/features/1.0/xml/features
     features:install -c jbpm-spring-persistent
 
 To see the results tail the Fuse ESB log

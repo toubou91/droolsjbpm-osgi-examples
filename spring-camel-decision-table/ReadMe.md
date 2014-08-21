@@ -9,16 +9,19 @@ This project includes a unit test, org.drools.camel.example.CamelContextXmlTest,
 
 To run this project use
 
-    mvn camel:run
+    mvn camel:run -Psimple
+    
+    or 
+    
+    mvn camel:run -Pdecision-table
 
 To deploy this project into :
 
-[JBoss Fuse](http://access.redhat.com/downloads) or
-[Apache Karaf](http://karaf.apache.org/index/community/download.html)
+[JBoss Fuse](http://access.redhat.com/downloads)
 
-Start JBoss Fuse or Apache Karaf
+Start JBoss Fuse
 
-    <JBoss Fuse Home>/bin/fuse  or <Karaf Home>/bin/karaf
+    <JBoss Fuse Home>/bin/fuse
 
 In the console, use the following commands
 
@@ -29,9 +32,9 @@ In the console, use the following commands
     features:install kie-camel
     features:install drools-decision-table-kie-spring-camel-example
 
-To see the results tail the Fuse ESB log
+To see the results tail the JBoss Fuse log
 
-    tail -f <Fuse ESB Home> or <Karaf Home>/data/log/fuseesb.log
+    tail -f <Fuse ESB Home>/data/log/fuseesb.log
     
     2013-06-07 17:26:12,717 | INFO  | uteDecisionTable | Chilton   | 249 - org.apache.camel.camel-core - 2.10.3 | Cheese Stilton costs 10 EUR.
     2013-06-07 17:26:12,842 | INFO  | imer://testRoute | Home      | 249 - org.apache.camel.camel-core - 2.10.3 | Person Young Person is staying home

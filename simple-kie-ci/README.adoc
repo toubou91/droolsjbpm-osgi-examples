@@ -37,7 +37,7 @@
 
  - Execute the following commands
 
-    features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+    features:addurl mvn:org.drools.example/features/1.0/xml/features
     features:install -c simple-kie-ci
 
 -  TODO - Explain what we do with Kie-Ci, KieSession ...

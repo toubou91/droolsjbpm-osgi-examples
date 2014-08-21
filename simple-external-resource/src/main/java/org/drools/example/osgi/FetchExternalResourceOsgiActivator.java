@@ -16,7 +16,7 @@ import org.osgi.framework.BundleContext;
 public class FetchExternalResourceOsgiActivator implements BundleActivator {
 
     private static final ReleaseId APP_REL_ID = KieServices.Factory.get()
-            .newReleaseId("org.drools.example", "fetch-external-resource", "1.0.0-SNAPSHOT");
+            .newReleaseId("org.drools.example", "fetch-external-resource", "1.0");
     private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 
     private KieSession ksession;

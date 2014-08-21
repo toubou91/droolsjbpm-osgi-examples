@@ -4,7 +4,7 @@
 
     <groupId>org.drools.example</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>Drools OSGi Example :: Parent</name>
     <packaging>pom</packaging>
@@ -30,23 +30,23 @@
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-api</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-internal</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-ci</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-camel</artifactId>
-                <version>${drools.version}</version>
-                <!-- Added exclussion as Kie, Drools projects use a different versin of Spring -->
+                <version>${brms.version}</version>
+                <!-- Added exclusion as Kie, Drools projects use a different version of Spring -->
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -65,12 +65,12 @@
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-aries-blueprint</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
                 <artifactId>kie-spring</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
                 <!-- Added exclussion as Kie, Drools projects use a different versin of Spring -->
                 <exclusions>
                     <exclusion>
@@ -92,55 +92,61 @@
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-core</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-compiler</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-decisiontables</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-osgi-integration</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>org.springframework.aop</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- jBPMN -->
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-bpmn2</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-human-task-core</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-persistence-jpa</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-flow</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-runtime-manager</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jbpm</groupId>
                 <artifactId>jbpm-audit</artifactId>
-                <version>${drools.version}</version>
+                <version>${brms.version}</version>
             </dependency>
 
             <!-- Spring -->
@@ -234,10 +240,6 @@
     </repositories>
 
     <modules>
-
-        <!--   <module>bundles</module>  -->
-        <!--   <module>watch-external-resource</module> -->
-
         <module>features</module>
 
         <!-- Drools Kie - BundleActivator, DS, CDI -->
@@ -272,10 +274,11 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <!-- Correspond to version 6.0.2.ER3 -->
-                <drools.version>6.0.3-redhat-2</drools.version>
+                <brms.version>6.0.3-redhat-5</brms.version>
                 <h2.version>1.4.178</h2.version>
-                <spring.version>3.0.7.RELEASE</spring.version>
+                <!--<spring.version>3.0.7.RELEASE</spring.version>-->
+                <!-- We will use same version as defined in JBoss Fuse for Camel -->
+                <spring.version>3.2.8.RELEASE</spring.version>
                 <hibernate.version>4.2.0.SP1</hibernate.version>
                 <felix.scr.version>1.8.0</felix.scr.version>
                 <pax.cdi.version>0.6.0</pax.cdi.version>
@@ -285,20 +288,6 @@
             </properties>
             <dependencyManagement>
                 <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.ip.component.management</groupId>
-                        <artifactId>ip-dependency-management-all</artifactId>
-                        <version>1.2-redhat-10</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.component.management</groupId>
-                        <artifactId>jboss-dependency-management-all</artifactId>
-                        <version>6.1.1.Final-redhat-61</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
                     <dependency>
                         <groupId>org.jboss.fuse.bom</groupId>
                         <artifactId>jboss-fuse-parent</artifactId>

@@ -6,7 +6,7 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>org.drools.example</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <groupId>org.drools.example</groupId>
@@ -183,25 +183,6 @@
                 </configuration>
             </plugin>
 
-            <!-- allows the route to be ran via 'mvn camel:run' -->
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-maven-plugin</artifactId>
-                <configuration>
-                    <applicationContextUri>META-INF/spring/*.xml</applicationContextUri>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/Guvnor**.java</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-
             <!-- WAR -->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -233,7 +214,9 @@
                         <groupId>org.apache.camel</groupId>
                         <artifactId>camel-maven-plugin</artifactId>
                         <configuration>
-                            <applicationContextUri>META-INF/spring/camel-context.xml</applicationContextUri>
+                            <fileApplicationContextUri>
+                                src/main/resources/META-INF/spring/camel-context.xml;
+                                src/main/resources/META-INF/spring/kie.xml</fileApplicationContextUri>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -247,8 +230,9 @@
                         <groupId>org.apache.camel</groupId>
                         <artifactId>camel-maven-plugin</artifactId>
                         <configuration>
-                            <applicationContextUri>META-INF/spring/camel-context-decision-table.xml
-                            </applicationContextUri>
+                            <fileApplicationContextUri>
+                                src/main/resources/META-INF/spring/camel-context-decision-table.xml;
+                                src/main/resources/META-INF/spring/kie.xml</fileApplicationContextUri>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -16,9 +16,6 @@
 
 package org.drools.camel.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -30,9 +27,13 @@ import org.kie.internal.builder.DecisionTableInputType;
 import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.internal.io.ResourceFactory;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class    SpreadsheetIntegrationExampleTest {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class SpreadsheetIntegrationExampleTest {
 
     @Test
     public void testExecuteUsingKieAPI() throws Exception {
@@ -67,27 +68,6 @@ public class    SpreadsheetIntegrationExampleTest {
         // get the session
         KieSession ksession = ks.newKieContainer(ks.getRepository().getDefaultReleaseId()).newKieSession();
         return ksession;
-    }
-
-    @Test
-    public void testExecuteJBRULES3005() throws Exception {
-        Resource dt = ResourceFactory.newClassPathResource("/data/IntegrationExampleTest.xls", getClass() );
-        KieSession ksession = getKieSession( dt );
-
-        //ASSERT AND FIRE
-        ksession.insert( new Cheese( "stilton",
-                                    42 ) );
-        ksession.insert( new Person( "michael",
-                                    "stilton",
-                                    42 ) );
-        final List<String> list = new ArrayList<String>();
-        ksession.setGlobal( "list",
-                           list );
-        ksession.fireAllRules();
-        assertEquals( 1,
-                      list.size() );
-        assertEquals( "Old man stilton",
-                      list.get( 0 ) );
     }
     
     @Test 

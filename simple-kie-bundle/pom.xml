@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.drools.example</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <groupId>org.drools.example</groupId>
     <artifactId>simple-kie-bundle</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>Drools OSGi Example :: Simple rule imported from Bundle</name>
     <packaging>bundle</packaging>

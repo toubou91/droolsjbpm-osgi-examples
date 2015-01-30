@@ -630,6 +630,9 @@ etc/org.apache.karaf.features.cfg (see featuresBoot variable)
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
   features:install jbpm-spring-persistent
 
+  REMARK : The example bundle must be added sperately as it not installed
+  install -s mvn:org.drools.example/spring-jbpm-persistence/1.0.0-SNAPSHOT
+
 9. Spring project (Kie Spring) starting Camel Routes firing Drools rules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features

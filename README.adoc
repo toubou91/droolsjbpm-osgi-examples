@@ -581,7 +581,7 @@ Enjoy it !
 To play with the different examples and redeploy the bundles in JBoss Fuse every time, follow these steps
 
 - Start Karaf with clean option to remove previously installed bundles and start the server with the features defined by default under the file
-etc/org.apache.karaf.features.cfg (see feeturesBoot variable)
+etc/org.apache.karaf.features.cfg (see featuresBoot variable)
 
   ./karaf clean
 
@@ -595,6 +595,7 @@ etc/org.apache.karaf.features.cfg (see feeturesBoot variable)
 2. Drools project (kie + rules) started using OSGI Declarative Service
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
+  features:install scr
   features:install simple-rule-inject-ds
 
 3. Drools project (kie + rules) started using CDI and Weld

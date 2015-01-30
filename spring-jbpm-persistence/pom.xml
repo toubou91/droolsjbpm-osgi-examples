@@ -150,8 +150,9 @@
                         <Bundle-SymbolicName>jbpm-spring-persistence-osgi-example</Bundle-SymbolicName>
                         <Bundle-Name>jBPM-Spring-Hibernate-Example</Bundle-Name>
                         <Import-Package>
-                            javax.persistence,
-                            javax.persistence.criteria,
+                            javax.persistence;version="[2.0,3)",
+                            javax.persistence.criteria;version="[2.0,3)",
+                            javax.persistence.jpa;version="[2.0,3)";resolution:=optional,
                             javax.sql,
                             org.slf4j;version="[1.5,2.0)",
                             org.drools.core;version="[6.0,7)",
@@ -185,9 +186,8 @@
                             org.jbpm.workflow.core.node;version="[6.0,7)",
                             org.jbpm.bpmn2;version="[6.0,7)",
                             org.jbpm.bpmn2.core;version="[6.0,7)",
-                            org.hibernate,
-                            org.hibernate.jpa,
-                            org.hibernate.jpa.spi,
+                            org.hibernate;version="[4.2,5)",
+                            org.hibernate.ejb;version="[4.2,5)",
                             org.kie.api;version="[6.0,7)",
                             org.kie.api.definition.rule;version="[6.0,7)",
                             org.kie.api.runtime.rule;version="[6.0,7)",
@@ -203,7 +203,6 @@
                             org.kie.internal;version="[6.0,7)",
                             org.kie.spring;version="[6.0,7)",
                             org.eclipse.jdt.internal.compiler,
-                            org.hibernate.ejb;version="[4.3,5)",
                             org.springframework.orm.jpa,
                             org.springframework.jdbc.datasource,
                             org.h2,

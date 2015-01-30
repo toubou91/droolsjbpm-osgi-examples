@@ -285,11 +285,11 @@
                 <pax.cdi.version>0.6.0</pax.cdi.version>
                 <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
                 <org.jboss.weld.weld.version>1.1.13.Final</org.jboss.weld.weld.version>
-                <hibernate.version>4.2.0.SP1</hibernate.version>
+                <hibernate.version>4.2.15.Final</hibernate.version>
                 <javaee-api.version>6.0</javaee-api.version>
 
                 <!-- Plugins -->
-                <maven-bundle-plugin.version>2.3.7</maven-bundle-plugin.version>
+                <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
                 <maven-camel-plugin.version>2.12.0.redhat-610379</maven-camel-plugin.version>
             </properties>
         </profile>

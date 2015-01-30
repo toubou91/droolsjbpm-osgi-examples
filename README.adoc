@@ -600,6 +600,8 @@ etc/org.apache.karaf.features.cfg (see featuresBoot variable)
 
 3. Drools project (kie + rules) started using CDI and Weld
 
+  Remark : Check that javax.annotation line if well uncommented within the file etc/jre.properties for your JDK
+
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
   features:install simple-cdi
 

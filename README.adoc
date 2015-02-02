@@ -630,9 +630,6 @@ etc/org.apache.karaf.features.cfg (see featuresBoot variable)
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
   features:install jbpm-spring-persistent
 
-  REMARK : The example bundle must be added sperately as it not installed
-  install -s mvn:org.drools.example/spring-jbpm-persistence/1.0.0-SNAPSHOT
-
 9. Spring project (Kie Spring) starting Camel Routes firing Drools rules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
@@ -640,7 +637,7 @@ etc/org.apache.karaf.features.cfg (see featuresBoot variable)
 
 10. Aries Blueprint project (Kie Aries Blueprint) starting Camel Routes firing Drools rules
 
-REMARK : Does not work anymore on Jboss Fuse 6.1 as Camel 2.14 depends on Blueprint 1.1
+REMARK : Does not work anymore on JBoss Fuse 6.1 as Camel 2.14 depends on Blueprint 1.1
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
   features:install drools-decisiontable-kie-blueprint-camel

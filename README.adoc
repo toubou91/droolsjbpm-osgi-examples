@@ -2,23 +2,18 @@
 :data-uri:
 :toc:
 
-== Drools & jBPM examples for OSGi platforms (JBoss Fuse, Karaf, Fabric8)
+== Drools & jBPM examples for OSGi platforms (JBoss Fuse)
 
 toc::[]
 
-This project contains Drools & jBPM OSGi examples that you can deploy on :
-supported release
-- https://www.jboss.org/products/fuse.html[RedHat JBoss Fuse 6.1]
-or community releases
-- http://karaf.apache.org[Apache Karaf]
-- http://fabric8.io/[Fabric 8 - Community project of RedHat JBoss Fuse]
+This project contains Drools & jBPM OSGi examples that you can deploy on supported release https://www.jboss.org/products/fuse.html[RedHat JBoss Fuse 6.2]
 
 == Download and compile the project
 
 - In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
-  git checkout 6.1.0.CR1
+  git checkout 6.2.0.CR1
   
 or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 
@@ -32,27 +27,20 @@ or download the release available here : https://github.com/cmoulliard/droolsjbp
   
 == Download and deploy on RedHat JBoss Fuse
 
-- Open a browser at the following address : https://www.jboss.org/products/fuse.html
-- Download `JBoss Fuse 6.1`
+- As JBoss Fuse 6.2 has not been yet released, we must download it from the Early Access build
+- Open a browser at the following address and select one of the https://repository.jboss.org/nexus/content/groups/ea/org/jboss/fuse/jboss-fuse-full/[latest release]
 - Unzip it under your local temp directory *~/temp*
-- Change to the JBoss Fuse bin directory
+- Change to the JBoss Fuse bin directory where +xxx+ should be changed according to the release downloaded
 
-  cd ~/temp/jboss-fuse-6.1.0.redhat-379/bin
+  cd ~/temp/jboss-fuse-6.2.0.redhat-xxx/bin
 
 - Start Fuse console
 
   ./fuse
-  
-== Download and deploy on Apache Karaf/Fabric8
-
-Procedure is exactly the same excepted that you should download *Apache Karaf* or *Fabric8* releases
-
-- http://karaf.apache.org/index/community/download.html[Karaf 2.3.5]
-- http://fabric8.io/#/site/book/doc/index.md?chapter=getStarted_md[fabric8-karaf-1.1.0.CR1 or more]
 
 == Add Repositories of the modules
 
-In the JBoss Fuse/Karaf console, add the url pointing to the file containing the description of the Drools/jBPM OSGI modules
+In the JBoss Fuse console, add the url pointing to the file containing the description of the Drools/jBPM OSGI modules
 
   features:addurl mvn:org.drools.example/features/1.0.0-SNAPSHOT/xml/features
 
@@ -121,7 +109,7 @@ to verify if they can Drink according to their age.
     Person Old Person aged of 21 , can go to the Bar
     Person Young Person aged of 18, can't go to the Bar
 
-Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of Karaf
+Remark : When you stop the bundle 'simple-rule', the Kie Session is stopped and this message appears in the console of JBoss fuse
 
     KieSession disposed
 
@@ -200,10 +188,10 @@ public void start(final BundleContext bc) throws Exception {
 }
 ----
 
-To deploy this module on the container, use this Karaf command which will install `decision-table` module and the example.
-When the bundle will be started, this information will appear in the Karaf Console
+To deploy this module on the container, use this JBoss Fuse command which will install `decision-table` module and the example.
+When the bundle will be started, this information will appear in the Console
 
-    karaf@root> features:install simple-decisiontable-rule
+    @root> features:install simple-decisiontable-rule
     KieSession created.
     Cheese Stilton costs 10 EUR.
     Cheese Cheddar costs 50 EUR.
@@ -219,7 +207,7 @@ When the bundle will be started, this information will appear in the Karaf Conso
 === External XLS Decision Table
 
 As Rules will be designed by business analysts in a company, they will prefer to use a XLS Spreadsheet document that they will provide
- to the project (developer, ...) as artefact to be used by the application to calculate decision. In the previous example, the decision table
+ to the project (developer, ...) as artifact to be used by the application to calculate decision. In the previous example, the decision table
  was embedded, packaged into the jar file generated during the build of the application. While this approach is fine, it implies that the project must
  rebuild (regenerate a jar/zip file) every time we have a new update the decision table.
  This example allows you to externalize the location of the decision table. The only thing to be done is to change this variable in the code
@@ -231,9 +219,9 @@ public class FetchExternalResourceOsgiActivator implements BundleActivator {
     private static final String EXTERNAL_XLS_RESOURCE = "file:///Users/chmoulli/MyProjects/droolsjbpm-osgi-examples/documentation/decision-table/cheeseDecisionTable.xls";
 ----
 
-to point to your XLS file on the file system, before to build the project and deploy on it Karaf, JBoss Fuse.
+to point to your XLS file on the file system, before to build the project and deploy on itJBoss Fuse.
 
-Project can be deployed using the following Karaf command :
+Project can be deployed using the following command :
 
     features:install fetch-external-resource
 
@@ -363,7 +351,7 @@ To deploy this project on JBoss Fuse, use this feature command which will deploy
 
 === Simple Process
 
-jbpmn process is also supported and can be deployed too on Karaf, JBoss Fuse container. Like the Drools Simple Rule Example, you should install a feature
+jbpmn process is also supported and can be deployed too on JBoss Fuse. Like the Drools Simple Rule Example, you should install a feature
 which will install the bundles required (jbpm, Human-task, ...) and finally the example
 
     features:install simple-process
@@ -580,10 +568,10 @@ Enjoy it !
 
 To play with the different examples and redeploy the bundles in JBoss Fuse every time, follow these steps
 
-- Start Karaf with clean option to remove previously installed bundles and start the server with the features defined by default under the file
+- Start JBoss Fuse with clean option to remove previously installed bundles and start the server with the features defined by default under the file
 etc/org.apache.karaf.features.cfg (see featuresBoot variable)
 
-  ./karaf clean
+  ./fuse clean
 
 - Install the features repo and the corresponding features
 

@@ -11,7 +11,8 @@
 
     <groupId>org.test</groupId>
     <artifactId>kie-project-simple</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <!-- The version number is 1.0 and not snapshot as we will use this key to retrieve it from the maven repo -->
+    <version>1.0</version>
     <name>Drools OSGI Example :: Kie Simple Project :: To be used with Kie-ci</name>
 
 </project>

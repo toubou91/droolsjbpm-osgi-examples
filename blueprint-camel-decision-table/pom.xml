@@ -13,6 +13,7 @@
 
   <artifactId>blueprint-camel-decision-table</artifactId>
   <packaging>bundle</packaging>
+  <version>1.0.0-SNAPSHOT</version>
   <name>Drools OSGi Example :: Kie Blueprint, Drools, Camel Example</name>
 
   <dependencies>

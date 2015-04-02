@@ -217,27 +217,17 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss.org Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>jboss-releases</id>
-            <name>JBoss.org Fuse Releases</name>
-            <url>http://repository.jboss.org/nexus/content/repositories/fs-releases</url>
-        </repository>
-    </repositories>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.4.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <modules>
         <module>features</module>
@@ -267,6 +257,29 @@
         <module>spring-jbpm-persistence</module>
     </modules>
 
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss.org Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-releases</id>
+            <name>JBoss.org Fuse Releases</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/fs-releases</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>release</id>
@@ -274,7 +287,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <brms.version>6.0.3-redhat-4</brms.version>
+                <brms.version>6.0.3-redhat-8</brms.version>
                 <h2.version>1.4.178</h2.version>
                 <!--<spring.version>3.0.7.RELEASE</spring.version>-->
                 <!-- We will use same version as defined in JBoss Fuse for Camel -->

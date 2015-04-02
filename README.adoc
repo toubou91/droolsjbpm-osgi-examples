@@ -14,7 +14,7 @@ RedHat supported release : https://www.jboss.org/products/fuse.html[RedHat JBoss
 - In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
-  git checkout RH.6.0.3.ER5
+  git checkout RH.6.0.3.ER8
   
 or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 
@@ -35,7 +35,7 @@ or download the release available here : https://github.com/cmoulliard/droolsjbp
 
   cd ~/temp/jboss-fuse-6.1.0.redhat-379/bin
 
-- Add the RedHat Maven Repo containing latest BRMS & BPMS builds (6.0.2.ER5, ...) to the config file
+- Add the RedHat Maven Repo containing latest BRMS & BPMS builds (6.0.2.ER8, ...) to the config file
   containing the maven repositories that we scan when we deploy the bundles on JBoss Fuse
 
   vi etc/org.ops4j.pax.url.mvn.cfg

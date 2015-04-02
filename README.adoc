@@ -18,7 +18,7 @@ or community releases
 - In a Dos/Unix terminal, clone this git project and checkout out the tag version
 
   git clone https://github.com/cmoulliard/droolsjbpm-osgi-examples.git
-  git checkout 6.1.0.CR1
+  git checkout `tag-version`
   
 or download the release available here : https://github.com/cmoulliard/droolsjbpm-osgi-examples/releases
 

@@ -302,7 +302,7 @@ the specification http://blog.osgi.org/2012/05/osgicdi-integration-rfp-available
 ----
 
 The java class looks like any CDI Bean class where a scope has been defined (@ApplicationScope) and dependencies injected
-*@Inject @Kession* to retrieve from the CDI Context, the object KSession created based on Kmodule.xml definition. The trick to link
+*@Inject @KSession* to retrieve from the CDI Context, the object KSession created based on Kmodule.xml definition. The trick to link
 the lifecycle of the bundle (start/stop events) with the OSGI CDI Service is to use the *@Observes* http://docs.jboss.org/cdi/spec/1.0/html/events.html#observermethods[annotation]
 and the *ContainerInitialized event*.
 
